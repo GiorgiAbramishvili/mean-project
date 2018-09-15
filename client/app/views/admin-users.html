@@ -1,0 +1,149 @@
+<div class="admin-content">
+			<div class="container-fluid">
+				<div class="admin-title">
+	<h1>Gestion des utilisateurs</h1>
+
+	<ul class="breadcrumb">
+	<li><a ui-sref="app.home">Latoo</a> <i class="md-icon">keyboard_arrow_right</i></li>
+		
+			<li><a ui-sref="admin.dashboard">Dashboard</a> <i class="md-icon">keyboard_arrow_right</i></li>
+		
+
+		
+			<li class="active">Utilisateurs</li>
+		
+	</ul><!-- /.breadcrumb -->	
+</div><!-- /.admin-title -->
+<nav class="pagination-wrapper">
+	<ul class="pagination">
+		<li class="page-item disabled" ng-class="{disabled: ctrl.page <= 1}" ng-click="changePage(ctrl.page - 1)" smooth-scroll="#top">
+			<a class="page-link" href="javascript:;" aria-label="Previous">
+				<span aria-hidden="true">&laquo;</span>
+				<span class="sr-only">Previous</span>
+			</a>
+		</li>
+
+		<li class="page-item" ng-show="ctrl.page - 3 > 0">
+			<a class="page-link" href="javascript:;">...</a>
+		</li>
+
+		<li class="page-item" ng-show="ctrl.page - 2 > 0" ng-click="changePage(ctrl.page - 2)" smooth-scroll="#top">
+			<a class="page-link" href="javascript:;">{{ctrl.page - 2}}</a>
+		</li>
+		<li class="page-item" ng-show="ctrl.page - 1 > 0" ng-click="changePage(ctrl.page - 1)" smooth-scroll="#top">
+			<a class="page-link" href="javascript:;">{{ctrl.page - 1}}</a>
+		</li>
+		<li class="page-item active">
+			<a class="page-link" href="javascript:;">{{ctrl.page}}</a>
+		</li>
+		<li class="page-item" ng-show="ctrl.page + 1 <= ctrl.maxPages" ng-click="changePage(ctrl.page + 1)" smooth-scroll="#top">
+			<a class="page-link" href="javascript:;">{{ctrl.page + 1}}</a>
+		</li>
+		<li class="page-item" ng-show="ctrl.page + 2 <= ctrl.maxPages" ng-click="changePage(ctrl.page + 2)" smooth-scroll="#top">
+			<a class="page-link" href="javascript:;">{{ctrl.page + 2}}</a>
+		</li>
+
+		<li class="page-item" ng-show="ctrl.page + 3 <= ctrl.maxPages">
+			<a class="page-link" href="javascript:;">...</a>
+		</li>
+
+		<li class="page-item" ng-class="{disabled: ctrl.page >= ctrl.maxPages}" ng-click="changePage(ctrl.page + 1)" smooth-scroll="#top">
+			<a class="page-link" href="javascript:;" aria-label="Next">
+				<span aria-hidden="true">&raquo;</span>
+				<span class="sr-only">Next</span>
+			</a>
+		</li>
+	</ul>
+</nav>
+<div class="admin-header-search">
+	<form method="get" action="?">
+		<div class="input-group">
+			<div class="input-group-addon">
+				<i class="md-icon">search</i>
+			</div><!-- /.input-group-addon -->
+
+			<input type="text" class="form-control" placeholder="Rechercher un utilisateur ..." ng-model="searchTerms" ng-change="searchCompany()">
+		</div><!-- /.form-group -->
+	</form>
+</div><!-- /.admin-header-search -->
+<div class="admin-box no-padding">
+	<table class="table small-header">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Image</th>
+				<th>Nom</th>
+				<th>Role</th>
+				<th>Package</th>
+				<th>Email</th>
+				<th></th>
+			</tr>
+		</thead>
+
+		<tbody>
+			
+				<tr ng-repeat="user in ctrl.users">
+					<td class="min-width"><input type="checkbox"></td>
+					<td class="min-width">
+						<div class="user-avatar">
+							<img src="assets/img/tmp/profile-1.jpg" alt="See H. Oceguera">
+						</div><!-- /.user-avatar -->
+					</td>
+					<td>{{user.firstName}} {{user.lastName}}</td>
+					<td>{{user.role}}</td>
+					<td>-</td>
+					<td>{{user.email}}</td>	
+					<td class="min-width">
+						<a ui-sref="admin.user({id: user._id})" class="btn btn-primary"><i class="md-icon">edit</i> Modifier</a>
+						<a ng-click="deleteClient(user)" class="btn btn-secondary"><i class="md-icon">delete</i> Supprimer</a>
+					</td>
+				</tr>
+			
+				
+		</tbody>
+	</table><!-- /.table -->
+</div><!-- /.admin-box -->
+
+<nav class="pagination-wrapper">
+	<ul class="pagination">
+		<li class="page-item disabled" ng-class="{disabled: ctrl.page <= 1}" ng-click="changePage(ctrl.page - 1)" smooth-scroll="#top">
+			<a class="page-link" href="javascript:;" aria-label="Previous">
+				<span aria-hidden="true">&laquo;</span>
+				<span class="sr-only">Previous</span>
+			</a>
+		</li>
+
+		<li class="page-item" ng-show="ctrl.page - 3 > 0">
+			<a class="page-link" href="javascript:;">...</a>
+		</li>
+
+		<li class="page-item" ng-show="ctrl.page - 2 > 0" ng-click="changePage(ctrl.page - 2)" smooth-scroll="#top">
+			<a class="page-link" href="javascript:;">{{ctrl.page - 2}}</a>
+		</li>
+		<li class="page-item" ng-show="ctrl.page - 1 > 0" ng-click="changePage(ctrl.page - 1)" smooth-scroll="#top">
+			<a class="page-link" href="javascript:;">{{ctrl.page - 1}}</a>
+		</li>
+		<li class="page-item active">
+			<a class="page-link" href="javascript:;">{{ctrl.page}}</a>
+		</li>
+		<li class="page-item" ng-show="ctrl.page + 1 <= ctrl.maxPages" ng-click="changePage(ctrl.page + 1)" smooth-scroll="#top">
+			<a class="page-link" href="javascript:;">{{ctrl.page + 1}}</a>
+		</li>
+		<li class="page-item" ng-show="ctrl.page + 2 <= ctrl.maxPages" ng-click="changePage(ctrl.page + 2)" smooth-scroll="#top">
+			<a class="page-link" href="javascript:;">{{ctrl.page + 2}}</a>
+		</li>
+
+		<li class="page-item" ng-show="ctrl.page + 3 <= ctrl.maxPages">
+			<a class="page-link" href="javascript:;">...</a>
+		</li>
+
+		<li class="page-item" ng-class="{disabled: ctrl.page >= ctrl.maxPages}" ng-click="changePage(ctrl.page + 1)" smooth-scroll="#top">
+			<a class="page-link" href="javascript:;" aria-label="Next">
+				<span aria-hidden="true">&raquo;</span>
+				<span class="sr-only">Next</span>
+			</a>
+		</li>
+	</ul>
+</nav>
+			</div><!-- /.container-fluid -->
+		</div><!-- /.admin-content -->		

@@ -1,0 +1,189 @@
+<div class="admin-content">
+    <div class="container-fluid">
+        <div class="admin-title">
+            <h1>Mailing</h1>
+
+            <ul class="breadcrumb">
+                <li>
+                    <a href="index.html">Latoo</a>
+                    <i class="md-icon">keyboard_arrow_right</i>
+                </li>
+
+                <li>
+                    <a href="admin-dashboard.html">Dashboard</a>
+                    <i class="md-icon">keyboard_arrow_right</i>
+                </li>
+
+
+
+                <li class="active">Mail</li>
+
+            </ul>
+            <!-- /.breadcrumb -->
+        </div>
+        <!-- /.admin-title -->
+        <div ng-show="target.specific">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="admin-header-search">
+                        <form method="get" action="?">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="md-icon">search</i>
+                                </div>
+                                <!-- /.input-group-addon -->
+
+                                <input type="text" class="form-control" placeholder="Rechercher un utilisateur ..." ng-model="searchTerms" ng-change="searchUsers()">
+                            </div>
+                            <!-- /.form-group -->
+                        </form>
+                    </div>
+                    <!-- /.admin-header-search -->
+                    <div class="admin-box no-padding">
+                        <table class="table small-header">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Image</th>
+                                    <th>Nom</th>
+                                    <th>Role</th>
+                                    <th>Package</th>
+                                    <th>Email</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr ng-repeat="user in ctrl.users | inArray:target.users:'email'">
+                                    <td class="min-width">
+                                        <input type="checkbox">
+                                    </td>
+                                    <td class="min-width">
+                                        <div class="user-avatar">
+                                            <img src="assets/img/tmp/profile-1.jpg" alt="See H. Oceguera">
+                                        </div>
+                                        <!-- /.user-avatar -->
+                                    </td>
+                                    <td>{{user.firstName}} {{user.lastName}}</td>
+                                    <td>{{user.role}}</td>
+                                    <td>-</td>
+                                    <td>{{user.email}}</td>
+                                    <td class="min-width">
+                                        <a href="javascript:;" ng-click="selectUser(user, index)" class="btn btn-primary">
+                                            <i class="md-icon">check</i> Selectionner</a>
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                        <!-- /.table -->
+
+                    </div>
+                    <!-- /.admin-box -->
+                    <div class="admin-box">
+                        Utilisateurs selectionnés :
+                        <span ng-repeat="user in target.users">{{user.email}}
+                            <a href="javascript:;" ng-click="removeUser($index)">
+                                <i class="md-icon">remove_circle</i>
+                            </a>, </span>
+                        <br>
+                        <p style="margin-bottom: 10px;">{{target.users.length}} mails seront envoyés</p>
+                        <a href="javascript:;" style="margin-top: 20px;" class="btn btn-default" ng-click="target.specific = false">
+                            <span>Selectionner un groupe</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="!target.specific">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="admin-box">
+                        <h2>Choisissez la cible du mail groupé</h2>
+
+
+                        <div class="input-group mail-form">
+                            <label>Envoyer un mail à</label>
+                            <select ng-model="target.type" ng-change="calcTarget()">
+                                <option value="professionnel">Tout les professionnels</option>
+                                <option value="particulier">Tout les particuliers</option>
+                            </select>
+                        </div>
+                        <!--<div class="input-group mail-form">
+							<label>Inscrits depuis</label>
+							<select ng-model="target.delay" ng-change="calcTarget()">
+								<option value="1">Une semaine</option>
+								<option value="3">Un mois</option>
+								<option value="9">Trois mois</option>
+								<option value="-1">Tout le temps</option>
+							</select>
+						</div>-->
+                        <p style="margin-bottom: 10px;">{{targetNumber}} mails seront envoyés</p>
+                        <div class="alert alert-danger" ng-if="error">
+                            <strong>Erreur!</strong> {{error}}
+                        </div>
+                        <a href="javascript:;" class="btn btn-default" ng-click="target.specific = true">
+                            <span>Selectionner des utilisateurs</span>
+                        </a>
+                        <div class="row  right"> 
+                            <a href="javascript:;" class="btn btn-secondary" ng-click="setActiveTpl('invite')">
+                                <i class="md-icon">check</i> Set as invite e-mail
+                            </a>
+                            <a href="javascript:;" 
+                                class="btn btn-secondary" ng-click="setActiveTpl('wellcome')"
+                                style="margin-right: 15px;"
+                                >
+                                <i class="md-icon">check</i> Set as wellcome e-mail
+                            </a>
+                                
+                            <select 
+                                    ng-model="selectedTpl" 
+                                    class="form-control  right w-230"  
+                                    ng-change="tplChange()"
+                                    id="_id" 
+                                    value="_id"
+                                    style="border-bottom: 1px solid #7d7d7d;" 
+                                    ng-options="tpl.subject for tpl in tpls">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form name="mailForm">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="admin-box">
+
+                        <div class="row">
+                            <h2 class="w-230">Contenu du mail</h2>
+                            
+                        </div>
+                        <div class="input-group mail-form">
+                            <input type="text" ng-model="target.title" placeholder="Objet" required>
+                        </div>
+                        <label>Contenu</label>
+                        <text-angular ng-model="target.content" required></text-angular>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <a href="javascript:;" class="btn btn-success btn-block left" ng-class="{'disabled': (saving || !mailForm.$valid)}" style="width: 75%;"
+                    ng-click="save()">
+                    <span ng-show="!saving">
+                        <i class="md-icon">send</i>Envoyer</span>
+                    <span ng-show="saving">
+                        <i class="fa fa-spinner fa-pulse fa-fw"></i>Sauvegarde....</span>
+                </a>
+                <a href="javascript:;" class="btn btn-primary right" ng-click="saveTpl()" style="width: 18%;" ng-class="{'disabled': (saving || !mailForm.$valid)}">
+                    <span>Save As Template</span>
+                </a>
+            </div>
+        </form>
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.admin-content -->

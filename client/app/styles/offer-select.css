@@ -1,0 +1,84 @@
+.offers .card {
+    text-align: center;
+    /*border: 1px solid #d34a00;*/
+}
+.offers .card:hover { box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 1px 5px rgba(130, 130, 130, 0.35); }
+
+.offers .the-price {
+    background-color: rgba(220,220,220,.17);
+    box-shadow: 0 1px 0 #dcdcdc, inset 0 1px 0 #fff;
+    padding: 20px;
+    margin: 0;
+}
+
+.offers .the-price h1 {
+    line-height: 1em;
+    padding: 0;
+    margin: 0;
+}
+.offers .card-footer label  {
+    background-color: #fb5a02;
+}
+.offers .card-footer label.active, .offers .card-footer label.active:active, .offers .card-footer label:active {
+    background-color: #d34a00;
+}
+.offers .selected {
+    border: 2px solid #d34a00;
+}
+
+.offers .selected .card-header h3 {
+    color: white;
+}
+
+.offers .selected .card-header {
+    background-color: #d34a00;
+    border-radius: 0;
+}
+
+.offers .subscript {
+    font-size: 25px;
+}
+
+.card ul li:nth-child(even) {
+    background-color: rgba(220,220,220,.25);
+}
+
+.card ul li:nth-child(odd) {
+    background-color: white;
+}
+
+.offers button.btn span {
+  font-size: 20px ;
+}
+.offers label input[type="radio"] {
+    display: none;
+}
+label input[type="radio"] ~ i.fa.fa-circle-o{
+    display: inline;
+}
+label input[type="radio"] ~ i.fa.fa-dot-circle-o{
+    display: none;
+}
+label input[type="radio"]:checked ~ i.fa.fa-circle-o{
+    display: none;
+}
+label input[type="radio"]:checked ~ i.fa.fa-dot-circle-o{
+    display: inline;
+}
+
+.offers div[data-toggle="buttons"] label {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 2em;
+    text-align: left;
+    white-space: nowrap;
+    vertical-align: top;
+    cursor: pointer;
+    background-color: none;
+    border: 0px solid white;
+    border-radius: 3px;
+    user-select: none;
+}

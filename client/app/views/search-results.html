@@ -1,0 +1,322 @@
+
+
+<div class="main-wrapper">
+	<div class="main">
+		<div class="main-inner">
+
+
+			<div class="content">
+				<div class="container-fluid fullwidth-wrapper">
+					<div class="row">
+						<div class="col-sm-8">
+							<div class="full leaflet-container leaflet-fade-anim">
+							<div class="header-bottom">
+								<div class="container" align="center">
+
+									<ul class="nav nav-pills lt-quick-search">
+										<li class="nav-item">
+											<a href="javascript:;" class="nav-link"><i class="fa fa-2x fa-hotel fa-fw"></i><span>Hôtels</span></a>
+											<span class="nav-hover"></span>
+											<div class="nav-list-details">
+												<div class="details-ctn">
+													<ul>
+														<li ng-click="selectCat('hotellerie')"><i class="fa fa-fw fa-bed"></i>Hôtels</li>
+														<li ng-click="selectCat('camping caravaning')"><i class="fa fa-fw fa-fire"></i>Camping</li>
+														<li ng-click="selectCat('Auberge de Jeunesse')"><i class="fa fa-fw fa-bed"></i>Auberge de jeunesse</li>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class="nav-item"><a  href="javascript:;" class="nav-link"><i class="fa fa-2x fa-cutlery fa-fw"></i><span>Restos, Bars</span></a>
+											<span class="nav-hover"></span>
+											<div class="nav-list-details">
+												<div class="details-ctn">
+													<ul>
+														<li ng-click="selectCat('Restauration')"><i class="fa fa-fw fa-glass"></i>Restaurants</li>
+														<li ng-click="selectCat('Bar')"><i class="fa fa-fw fa-coffee"></i>Bars, café</li>
+														<li ng-click="selectCat('Restauration rapide')"><i class="fa fa-fw fa-cutlery"></i>Fast Food</li>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class="nav-item"><a  href="javascript:;" class="nav-link"><i class="fa fa-2x fa-futbol-o fa-fw"></i><span>Loisirs</span></a>
+											<span class="nav-hover"></span>
+											<div class="nav-list-details">
+												<div class="details-ctn">
+													<ul>
+														<li ng-click="selectCat('Cinema')"><i class="fa fa-fw fa-film"></i>Cinémas</li>
+														<li ng-click="selectCat('art spectacle')"><i class="fa fa-fw fa-ticket"></i>Théatre, Arts du spectacle</li>
+														<li ng-click="selectCat('museologie')"><i class="fa fa-fw fa-university"></i>Musées</li>
+														<li ng-click="selectCat('librairie')"><i class="fa fa-fw fa-book"></i>Librairies</li>
+														<li ng-click="selectCat('sport')"><i class="fa fa-fw fa-futbol-o"></i>Sport</li>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class="nav-item"><a  href="javascript:;" class="nav-link"><i class="fa fa-2x fa-shopping-basket fa-fw"></i><span>Commerces</span></a>
+											<span class="nav-hover"></span>
+											<div class="nav-list-details">
+												<div class="details-ctn">
+													<ul>
+														<li ng-click="selectCat('grande distribution')"><i class="fa fa-fw fa-shopping-cart"></i>Supermarchés</li>
+														<li ng-click="selectCat('centre commercial')"><i class="fa fa-fw fa-shopping-bag"></i>Centres commerciaux</li>
+														<li ng-click="selectCat('boulangerie patisserie')"><i class="fa fa-fw fa-birthday-cake"></i>Boulangeries, Patisseries</li>
+														<li ng-click="selectCat('Telephonie')"><i class="fa fa-fw fa-phone"></i>Téléphonie</li>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class="nav-item"><a  href="javascript:;" class="nav-link"><i class="fa fa-2x fa-heartbeat fa-fw"></i><span>Bien-être</span></a>
+											<span class="nav-hover"></span>
+											<div class="nav-list-details">
+												<div class="details-ctn">
+													<ul>
+														<li ng-click="selectCat('Coiffure')"><i class="fa fa-fw fa-scissors"></i>Coiffeurs</li>
+														<li ng-click="selectCat('Beaute')"><i class="fa fa-fw fa-smile-o"></i>Instituts de beauté</li>
+														<li ng-click="selectCat('Pharmacie')"><i class="fa fa-fw fa-plus"></i>Pharmacies</li>
+														<li ng-click="selectCat('Optique')"><i class="fa fa-fw fa-eye"></i>Opticiens</li>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class="nav-item"><a  href="javascript:;" class="nav-link"><i class="fa fa-2x fa-female fa-fw"></i><span>Mode</span></a>
+											<span class="nav-hover"></span>
+											<div class="nav-list-details">
+												<div class="details-ctn">
+													<ul>
+														<li ng-click="selectCat('Vetement')"><i class="fa fa-fw fa-female"></i>Vêtements</li>
+														<li ng-click="selectCat('Chaussure')"><i class="fa fa-fw fa-female"></i>Chaussures</li>
+														<li ng-click="selectCat('Bijouterie')"><i class="fa fa-fw fa-female"></i>Bijoux et accessoires</li>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class="nav-item"><a  href="javascript:;" class="nav-link"><i class="fa fa-2x fa-car fa-fw"></i><span>Services</span></a>
+											<span class="nav-hover"></span>
+											<div class="nav-list-details">
+												<div class="details-ctn">
+													<ul>
+														<li ng-click="selectCat('Parking')"><i class="fa fa-fw fa-product-hunt"></i>Parkings</li>
+														<li ng-click="selectCat('Garage')"><i class="fa fa-fw fa-car"></i>Garages</li>
+														<li ng-click="selectCat('Station service')"><i class="md-icon fa-fw">local_gas_station</i>Stations services</li>
+														<li ng-click="selectCat('Vente automobile')"><i class="md-icon fa-fw">directions_car</i>Vente automobile</li>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<li class="nav-item"><a  href="javascript:;" class="nav-link"><i class="fa fa-2x fa-info fa-fw"></i><span>Pratique</span></a>
+											<span class="nav-hover"></span>
+											<div class="nav-list-details">
+												<div class="details-ctn">
+													<ul>
+														<li ng-click="selectCat('Banque')"><i class="fa-fw md-icon">euro_symbol</i>Banque</li>
+														<li ng-click="selectCat('Poste')"><i class="fa-fw md-icon">local_post_office</i>Poste</li>
+														<li ng-click="selectCat('Mairie')"><i class="fa-fw md-icon">account_balance</i>Mairie</li>
+														<li ng-click="selectCat('Ecole')"><i class="fa-fw md-icon">school</i>Ecole</li>
+														<li ng-click="selectCat('Hopital')"><i class="fa-fw md-icon">local_hospital</i>Hôpital</li>
+													</ul>
+												</div>
+											</div>
+										</li>
+									</ul>
+									
+								</div>
+							</div> 
+								<ng-map class="leaflet-map-pane" default-style="true" zoom="13" center="[48.864716, 2.349014]">
+									<marker ng-repeat="p in positions" position="{{p.position}}" id="{{p.id}}" animation="DROP" on-click="displayInfo(p)"></marker>
+									<info-window id="info-company" ng-show="showingCompany">
+								        <div class="latoo-card" >							  		
+										  	<div class="lt-card-title">{{showingCompany.RAISON_SOC}}</div>
+										  	<div class="lt-card-info">
+										  		<img ng-src="{{uri}}/companys/{{showingCompany._id}}/images?type=profile">
+										  		<ul>
+
+										  			<li>{{showingCompany.NOM}}</li>
+
+										  			<li class="loc">{{showingCompany.ADRESSE}}</li>
+										  			<li class="loc">{{showingCompany.CP}}, {{showingCompany.VILLE}}</li>
+										  			<li class="phone">&Agrave; {{showingCompany.distance}} mètres</li>
+													<a ui-sref="app.company({id:showingCompany._id})">Plus d'infos ></a>
+										  		</ul>
+										  	</div>
+										  	<div class="lt-card-juris">
+										  		<ul>
+										  		 <li>{{showingCompany.SIREN}}</li>
+										  		 <li> • APE{{showingCompany.APE}} • </li>
+										  		 <li>{{showingCompany.DATE_CREA}}</li>
+										  		</ul>
+										  	</div>
+										  	<!--<ul class="lt-social-buttons">
+												<li><button aria-label="social" class="btn social-button web" href="{{company.infos.WEBSITE}}" ><i class="fa fa-fw fa-globe"></i></button></li>
+												<li><button aria-label="social" class="btn social-button facebook" href="{{company.infos.SOCIAL.FACEBOOK}}" ><i class="fa fa-fw fa-facebook"></i></button><span class="social-counter ctn-facebook">250</span></li>
+												<li><button aria-label="social" class="btn social-button twitter" href="{{company.infos.SOCIAL.TWITTER}}" ><i class="fa fa-fw  fa-twitter"></i></button><span class="social-counter ctn-twitter">250</span></li>
+												<li><button aria-label="social" class="btn social-button gplus"><i class="fa fa-fw  fa-heart"></i></button><span class="social-counter ctn-gplus">250</span></li>
+											</ul>-->
+										</div>
+								      </info-window>
+									</ng-map>
+							</div>
+						</div><!-- /.col-* -->		
+
+						<div class="col-sm-4 pb-0" style="padding: 0px">	
+						<div class="filter filter-white hero-form" style="position: relative;">
+								<form name="research">
+
+								<div class="input-group first col-sm-12 col-md-12 keywordContainer" style="border-bottom: 1px solid #ddd">
+									<div class="input-group-addon">
+										<i class="md-icon">search</i>
+									</div><!-- /.input-group-addon -->
+
+									<input type="text" class="form-control" placeholder="Quoi ?" ng-model="researchKeyword" ng-change="autoCompleteKeyword(researchKeyword)">
+									<div class="keyWordList" ng-show="researchKeyword.length >= 2 && autoCompKeyWord.length">
+									 <ul>
+								        <li ng-repeat="myKeyword in autoCompKeyWord | highlight: researchKeyword | limitTo: 10" ng-click="changeInputKeyword(myKeyword)">{{myKeyword}}</li>
+								     </ul>
+								    </div>
+								</div><!-- /.input-group  -->				
+
+								<div class="input-group col-sm-12 col-md-12"  style="border-bottom: 1px solid #ddd;margin-bottom: 10px;">
+									<div class="input-group-addon" ng-click="askLocation()">
+										<i class="md-icon">location_on</i>
+									</div><!-- /.input-group-addon -->
+
+									<input type="text" places-auto-complete size="100%"
+							                class="form-control ng-pristine ng-valid ng-empty ng-touched"
+							                ng-model="researchLocation"
+							                placeholder="Où ?" 
+							                on-place-changed="placeChanged()" />
+									
+								    
+									<div class="input-group-addon end-group-addon" style="background-color: #FFF!important">
+										<i class="md-icon hoverable" ng-class="{'error-icon': geolocNotAuthorized}" ng-if="!loadingLocation && !proxMode" ng-click="askLocation()">my_location</i>
+										<span ng-show="loadingLocation"><i class="fa fa-spinner fa-spin fa-fw" ></i></span>
+										<i class="md-icon hoverable" ng-if="proxMode" ng-click="deleteProx()">clear</i>
+									</div><!-- /.input-group-addon -->
+									
+								</div><!-- /.input-group  -->
+								<div class="form-group last col-sm-12 col-md-2 " style="padding:0 10px;">
+									<button type="submit" class="btn btn-primary btn-block" style="border-radius:3px;" ng-click="search()"><i class="md-icon" style="margin:0px">search</i></button>
+								</div><!-- /.col-* -->
+							</form> 
+							</div><!-- /.filter -->		
+							<div class="row">
+								<div class="col-md-12" style="padding-left: 30px;padding-right: 30px;">
+								<!--<span style="float:left">12 résultats</span>-->
+								<span style="float:right" class="btn-switch" ng-class="{'active': listView}" ng-click="listView = true"><i class="fa fa-list fa-fw"></i>Vue liste</span>
+								<span style="float:right" class="btn-switch" ng-class="{'active': !listView}" ng-click="listView = false"><i class="fa fa-th-large fa-fw "></i>Vue grille</span>
+								<span style="float:left" class="btn-switch btn-explore" ng-click="changeRange(-0.5)"><i class="fa fa-minus fa-fw"></i></span>
+								<span style="float:left" class="btn-switch btn-explore no-action" ng-show="!editRange" ng-click="editRange = true">{{activeRange}}km</span>
+								<span style="float:left" class="btn-switch btn-explore no-action" ng-show="editRange"><input id="rangeSpinner" only-digits select-on-click type="text" ng-model="activeRange">km <i class="fa fa-check fa-fw" ng-click="changeRange(0)"></i></span>
+								<span style="float:left" class="btn-switch btn-explore" ng-click="changeRange(0.5)"><i class="fa fa-plus fa-fw"></i></span>
+								</div>
+							</div>
+							<div class="row results-list" style="padding:30px;padding-bottom:0;margin-top: 10px;">
+								<div class="col-md-12" ng-if="!myCompanies || !myCompanies.length">
+								Aucun résultat
+								<div class="details-ctn no-result">
+									<ul>										
+										<li ng-click="selectCat('hotellerie')"><i class="fa fa-fw fa-bed"></i>Hôtels</li>
+										<li ng-click="selectCat('Restauration')"><i class="fa fa-fw fa-glass"></i>Restaurants</li>
+										<li ng-click="selectCat('Cinema')"><i class="fa fa-fw fa-film"></i>Cinémas</li>
+										<li ng-click="selectCat('grande distribution')"><i class="fa fa-fw fa-shopping-cart"></i>Supermarchés</li>
+										<li ng-click="selectCat('Coiffure')"><i class="fa fa-fw fa-scissors"></i>Coiffeurs</li>
+										<li ng-click="selectCat('Banque')"><i class="fa-fw md-icon">euro_symbol</i>Banque</li>
+									</ul>
+								</div>
+								</div>
+								<div class="col-md-12" ng-if="listView">
+									<div class="cards-wrapper">
+										<div class="row">
+
+											<div class="col-sm-12" ng-repeat="company in myCompanies" ng-click="displayInfoAndCenter(company, $index)">
+												<div class="card latoo-result-card" id="{{company._id}}" ng-class="{'active':isCompanyActive($index), 'open': company.opened === 1,'closed': company.opened === 2, 'imminent': company.opened === 3}" ng-click="activeCompany($index)" style="margin-bottom: 5px;">
+													<div class="card-image col-md-6" style="background-size:cover;background-position:center center;background-image: url('{{uri}}/companys/{{company._id}}/images?type=cover');padding:0">
+
+														<h4 class="card-distance">&Agrave; {{company.distance}}m</h4>
+														<div class="card-over-content">
+															<h3><a href="javascript:;">{{researchKeyword}}</a></h3>
+															<h2><a href="javascript:;" ui-sref="app.company({id:'{{company._id}}'})">{{company.RAISON_SOC}}</a></h2>
+														</div><!-- /.card-image-rating -->
+													</div><!-- /.card-image -->
+
+
+													<div class="col-md-6">
+														<div class="card-overlay-content">
+															<h5 style="margin-bottom: 0;">{{company.RAISON_SOC}}</h5>
+															<small class="text-open" ng-if="company.opened === 1">Ouvert jusqu'à 18h</small>
+															<small class="text-closed" ng-if="company.opened === 2">Fermé</small>
+															<small class="text-imminent" ng-if="company.opened === 3">Ouvre à 19h</small><small class="text-closed" ng-if="!company.opened">Horaires non disponibles</small><br/>
+															<small style="text-transform: capitalize;">{{company.ADRESSE}}</small><br/>
+															<ul style="list-style: none;padding-left: 0;margin-bottom: 0;">
+													  			<li class="phone" style="text-transform: capitalize;">{{company.CP}}, {{company.VILLE}}</li>
+												  			</ul>
+														</div>
+														<div class="card-actions" style="padding: 10px;margin-top: 10px;">
+															<a href="javascript:;" ng-click="displayInfoAndCenter(company, $index)" class="card-action-icon"><i class="md-icon">location_on</i></a>
+															<a ui-sref="app.company({id:'{{company._id}}'})" class="card-action-btn btn btn-transparent">Plus d'infos <i class="fa fa-chevron-right"></i></a>
+														</div><!-- /.card-actions -->
+													</div>
+												</div><!-- /.card -->
+											</div><!-- /.col-* -->
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12" ng-if="!listView">
+									<div class="cards-wrapper">
+										<div class="row">
+
+											<div class="col-sm-12 col-md-6 col-lg-6" ng-repeat="company in myCompanies" ng-click="displayInfoAndCenter(company, $index)">
+												<div class="card latoo-result-card" id="{{company._id}}" ng-class="{'active':isCompanyActive($index), 'open': company.opened === 1,'closed': company.opened === 2, 'imminent': company.opened === 3}" ng-click="activeCompany($index)">
+													<div class="card-image " style="background-image: url('{{uri}}/companys/{{company._id}}/images?type=cover');">
+														<h4 class="card-distance">&Agrave; {{company.distance}}m</h4>
+
+														<div class="card-over-content">
+															<h3><a href="javascript:;">{{researchKeyword}}</a></h3>
+															<h2><a href="javascript:;" ui-sref="app.company({id:'{{company._id}}'})">{{company.RAISON_SOC}}</a></h2>
+														</div><!-- /.card-image-rating -->
+													</div><!-- /.card-image -->
+
+													<div class="card-actions">
+														<a href="javascript:;" ng-click="displayInfoAndCenter(company, $index)" class="card-action-icon"><i class="md-icon">location_on</i></a>
+														<a ui-sref="app.company({id:'{{company._id}}'})" class="card-action-btn btn btn-transparent">Plus d'infos</a>
+													</div><!-- /.card-actions -->
+
+													<div class="card-overlay">
+														<div class="card-overlay-content">
+															<h2>{{company.RAISON_SOC}}</h2>
+															<small class="text-open" ng-if="company.opened === 1">Ouvert jusqu'à 18h</small>
+															<small class="text-closed" ng-if="company.opened === 2">Fermé</small>
+															<small class="text-imminent" ng-if="company.opened === 3">Ouvre à 19h</small>
+															<small class="text-closed" ng-if="!company.opened">Horaires non disponibles</small><br/>
+															<small>{{company.NOM}}</small><br/>
+															<ul>
+													  			<li class="phone">Tél : -</li>
+													  			<li class="mail">Mail : -</li>
+												  			</ul>
+												  			<div class="card-actions no-border">
+																<a href="javascript:;" class="card-action-icon"><i class="fa fa-facebook fa-fw"></i></a>
+																<a href="javascript:;" class="card-action-icon"><i class="fa fa-twitter fa-fw"></i></a>
+																<a href="javascript:;" class="card-action-icon"><i class="fa fa-google-plus fa-fw"></i></a>
+																<a href="javascript:;" class="card-action-icon"><i class="fa fa-globe fa-fw"></i></a>
+															</div><!-- /.card-actions -->
+														</div>
+														<div class="card-actions">
+															<a href="javascript:;" ng-click="displayInfoAndCenter(company, $index)" class="card-action-icon"><i class="md-icon">location_on</i></a>
+															<a ui-sref="app.company({id:'{{company._id}}'})" class="card-action-btn btn btn-transparent">Plus d'infos <i class="fa fa-chevron-right"></i></a>
+														</div><!-- /.card-actions -->
+													</div>
+												</div><!-- /.card -->
+											</div><!-- /.col-* -->
+										</div>
+									</div>
+								</div>
+							</div>
+							
+
+						</div><!-- /.col-* -->		
+					</div><!-- /.row -->
+				</div><!-- /.container -->
+			</div><!-- /.content -->
+		</div><!-- /.main-inner -->
+	</div><!-- /.main -->
+    </div><!-- /.main-wrapper -->

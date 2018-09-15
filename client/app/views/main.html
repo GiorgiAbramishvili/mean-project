@@ -1,0 +1,318 @@
+
+<div class="main-wrapper">
+	<div class="main">
+		<div class="main-inner">
+
+			<div class="content">
+				<div class="hero">
+					
+					<video playsinline autoplay muted loop  id="bgvid" class="lt-bgvid">
+					    <source src="{{homebg | trustUrl}}" type="video/mp4">
+					</video>
+
+
+					<div class="hero-content ">
+						<div class="page-title">
+							<h1>Bienvenue sur Latoo </h1>
+						</div><!-- /.page-title -->
+					</div>
+					<div class="hero-form " ng-controller="ResearchCtrl">
+						<div class="container">
+							<form name="research" >
+
+								<div class="input-group first col-sm-12 col-md-6 keywordContainer">
+									<div class="input-group-addon">
+										<i class="md-icon">search</i>
+									</div><!-- /.input-group-addon -->
+
+									<input type="text" class="form-control" placeholder="Quoi ? Qui ?" ng-model="researchKeyword" ng-change="autoCompleteKeyword(researchKeyword)">
+									<div class="keyWordList" ng-show="researchKeyword.length >= 2 && autoCompCompany.length">
+									 <ul>
+								        <li ng-repeat="myKeyword in autoCompCompany | orderBy: myKeyword  | limitTo: 10" ng-click="changeInputKeyword(myKeyword)"><span ng-bind-html="highlight(myKeyword, researchKeyword)"></span></li>
+								     </ul>
+								    </div>
+								</div><!-- /.input-group  -->				
+
+								<div class="input-group col-sm-12 col-md-4">
+									<div class="input-group-addon" ng-click="askLocation()" ng-class="{'grey-bg': proxMode}">
+										<i class="md-icon">location_on</i>
+									</div><!-- /.input-group-addon -->
+
+									<!--<input type="text" class="form-control" placeholder="Où ?"  ng-model="researchLocation" ng-change="autoCompleteLocation(researchLocation)">-->
+									 <input type="text" places-auto-complete size="100%"
+							                class="form-control ng-pristine ng-valid ng-empty ng-touched"
+							                ng-model="researchLocation"
+							                placeholder="Où ?" 
+							                on-place-changed="placeChanged()" />
+								    
+									<div class="input-group-addon end-group-addon location" ng-class="{'activated': proxMode}" >
+										<i class="md-icon hoverable" ng-class="{'error-icon': geolocNotAuthorized}" ng-if="!loadingLocation && !proxMode" ng-click="askLocation()">my_location</i>
+										<span ng-show="loadingLocation"><i class="fa fa-spinner fa-spin fa-fw" ></i></span>
+										<span ng-if="proxMode"><i class="md-icon hoverable" style="padding-top: 5px;margin-right: 10px" ng-click="deleteProx()">clear</i><div class="aroundme">Autour de moi</div></span>
+									</div><!-- /.input-group-addon -->
+									
+								</div><!-- /.input-group  -->
+								<div class="form-group last col-sm-12 col-md-2">
+									<button type="submit" class="btn btn-primary btn-block" ng-click="submit()">Rechercher</button>
+								</div><!-- /.col-* -->
+							</form> 
+							<div class="hero-form-sub col-md-10">
+								<div class="header-bottom no-bg">
+								<div class="container" align="center">
+
+									<ul class="nav nav-pills lt-quick-search">
+										<li class="nav-item" ng-click="goToResearch('hotellerie')">
+											<a href="javascript:;" class="nav-link" ><i class="fa fa-2x fa-hotel fa-fw"></i><span>Hôtels</span></a>
+										</li>
+										<li class="nav-item" ng-click="goToResearch('Restauration')"><a  href="javascript:;" class="nav-link"><i class="fa fa-2x fa-cutlery fa-fw"></i><span>Restos, Bars</span></a>
+										</li>
+										<li class="nav-item" ng-click="goToResearch('Cinema')"><a  href="javascript:;" class="nav-link"><i class="fa fa-2x fa-futbol-o fa-fw"></i><span>Loisirs</span></a>
+										</li>
+										<li class="nav-item" ng-click="goToResearch('Commerce')"><a  href="javascript:;" class="nav-link"><i class="fa fa-2x fa-shopping-basket fa-fw"></i><span>Commerces</span></a>
+										</li>
+										<li class="nav-item" ng-click="goToResearch('Beaute')"><a  href="javascript:;" class="nav-link"><i class="fa fa-2x fa-heartbeat fa-fw"></i><span>Bien-être</span></a>
+										</li>
+										<li class="nav-item" ng-click="goToResearch('Vetement')"><a  href="javascript:;" class="nav-link"><i class="fa fa-2x fa-female fa-fw"></i><span>Mode</span></a>
+										</li>
+										<li class="nav-item" ng-click="goToResearch('Station service')"><a  href="javascript:;" class="nav-link"><i class="fa fa-2x fa-car fa-fw"></i><span>Services</span></a>
+										</li>
+										<li class="nav-item" ng-click="goToResearch('Poste')"><a  href="javascript:;" class="nav-link"><i class="fa fa-2x fa-info fa-fw"></i><span>Pratique</span></a>
+										</li>
+									</ul>
+									
+								</div>
+							</div> 
+							</div>
+						</div><!-- /.container -->
+					</div><!-- /.hero-form -->	
+
+					<div class="hero-layer"></div>
+				</div><!-- /.hero -->
+
+				<!--<div class="container">
+					
+					<div class="page-title">
+						<h2>professionnels populaires</h2>
+					</div><!-- /.page-title 
+					<div class="row">
+						<div class="col-sm-12 col-xl-10">
+							<div class="cards-wrapper">
+								<div class="row">
+
+									<div class="col-sm-6 col-md-4">
+										<div class="card">
+											<div class="card-image" style="background-image: url('assets/img/tmp/card-2.jpg');">
+												<a href="listing-detail.html"></a> 
+
+												<div class="card-image-rating">
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+												</div>
+											</div>
+
+											<div class="card-content">
+												<h3><a href="listing-detail.html">Drink &amp; Food</a></h3>
+												<h2><a href="listing-detail.html">Cozzy Coffee Shop</a></h2>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-sm-6 col-md-4">
+										<div class="card">
+											<div class="card-image" style="background-image: url('assets/img/tmp/card-1.jpg');">
+												<a href="listing-detail.html"></a> 
+
+												<div class="card-image-rating">
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+												</div>
+											</div>
+
+											<div class="card-content">
+												<h3><a href="listing-detail.html">Education</a></h3>
+												<h2><a href="listing-detail.html">Piano Lessons For Beginners</a></h2>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-sm-6 col-md-4">
+										<div class="card">
+											<div class="card-image" style="background-image: url('assets/img/tmp/card-3.jpg');">
+												<a href="listing-detail.html"></a> 
+
+												<div class="card-image-rating">
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+												</div>
+											</div>
+
+											<div class="card-content">
+												<h3><a href="listing-detail.html">Restaurant</a></h3>
+												<h2><a href="listing-detail.html">Delicious Ocean Restaurant</a></h2>
+											</div>
+
+										</div>
+									</div>
+
+									<div class="col-sm-6 col-md-4">
+										<div class="card">
+											<div class="card-image" style="background-image: url('assets/img/tmp/card-4.jpg');">
+												<a href="listing-detail.html"></a> 
+
+												<div class="card-image-rating">
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+												</div>
+											</div>
+
+											<div class="card-content">
+												<h3><a href="listing-detail.html">Food &amp; Drink</a></h3>
+												<h2><a href="listing-detail.html">Healthy Breakfast</a></h2>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-sm-6 col-md-4">
+										<div class="card">
+											<div class="card-image" style="background-image: url('assets/img/tmp/card-5.jpg');">
+												<a href="listing-detail.html"></a> 
+
+												<div class="card-image-rating">
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+												</div>
+											</div>
+
+											<div class="card-content">
+												<h3><a href="listing-detail.html">Travel</a></h3>
+												<h2><a href="listing-detail.html">London Trip</a></h2>
+											</div>
+
+										</div>
+									</div>
+
+									<div class="col-sm-6 col-md-4">
+										<div class="card">
+											<div class="card-image" style="background-image: url('assets/img/tmp/card-6.jpg');">
+												<a href="listing-detail.html"></a> 
+
+												<div class="card-image-rating">
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+													<i class="md-icon">star</i>
+												</div>
+											</div>
+
+											<div class="card-content">
+												<h3><a href="listing-detail.html">Food &amp; Drink</a></h3>
+												<h2><a href="listing-detail.html">Bio Vegatables</a></h2>
+											</div>
+
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-2 hidden-lg-down">
+							<div class="your-space">
+								<p>
+									Vous voulez être ici ?
+								</p>
+
+								<a href="#" class="btn btn-primary btn-block">S'inscrire</a>
+
+								<a href="#" class="btn btn-secondary btn-block">Contact</a>
+							</div>
+						</div>	
+					</div>
+				</div> -->
+				<div class="cta" ng-show="!isLoggedIn">
+					<div class="container">
+						<h2>Rejoignez Latoo</h2>
+
+						<p> 
+							Référencez votre activité professionelle ou participez au développement de vos commerces préférés gratuitement.
+						</p>
+
+						<a ng-click="ctrl.openLoginModal(true)" class="btn btn-primary">Inscription gratuite</a>
+					</div><!-- /.container -->
+				</div><!-- /.cta -->
+				<div class="cta" ng-show="test">
+					<div class="container">
+						<h2>Gérez votre compte</h2>
+
+						<ul class="home-pro-nav">
+							<li>Vos sociétés</li>
+							<li>Vos abonnements</li>
+							<li>Vos abonnements</li>
+						</ul>
+					</div><!-- /.container -->
+				</div><!-- /.cta -->
+				<div class="counter">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-12 col-md-3">
+								<h2>Latoo en chiffres</h2>
+							</div>
+
+							<div class="col-sm-12 col-md-9">
+								<div class="row">
+									<div class="col-sm-3">
+										<i class="md-icon">layers</i> 
+										<h3>+12000</h3>
+										<p>Professionnels enregistrés</p>
+									</div>
+
+									<div class="col-sm-3">
+										<i class="md-icon">location_city</i> 
+										<h3>+110000</h3>
+										<p>Commerces référencés</p>
+									</div>		
+
+									<div class="col-sm-3">
+										<i class="md-icon">people</i> 
+										<h3>+1000</h3>
+										<p>Particuliers inscrits</p>
+									</div>
+
+									<div class="col-sm-3">
+										<i class="md-icon">public</i> 
+										<h3>+500</h3>
+										<p>Catégories</p>
+									</div>										
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				
+
+				
+
+				
+
+				
+			</div><!-- /.content -->
+		</div><!-- /.main-inner -->
+	</div><!-- /.main -->
+</div><!-- /.main-wrapper -->

@@ -1,0 +1,403 @@
+
+<div class="main-wrapper"  id="mainContentCompany">
+	    <div class="main">
+	        <div class="main-inner">
+	        	
+
+	            <div class="content">
+	                <div class="content-title">
+	<div class="container">
+		<h1>{{company.company.RAISON_SOC}}</h1>
+
+
+		<ul class="breadcrumb">
+			<li><a ui-sref="app.home">Latoo</a> <i class="md-icon">keyboard_arrow_right</i></li>
+
+			<li><a ui-sref="app.search">{{company.company.VILLE}}</a> <i class="md-icon">keyboard_arrow_right</i></li>
+			
+			<li class="active">{{company.company.RAISON_SOC}}</li>
+			
+		</ul><!-- /.breadcrumb -->
+	</div><!-- /.container -->
+</div><!-- /.content-title -->
+
+<div class="lt-wrapper" >
+    
+
+<div class="listing-navigation">
+	<a href="#">
+		<i class="md-icon">keyboard_arrow_right</i>
+	</a>
+ 
+	<a href="#">
+		<i class="md-icon">print</i>
+	</a>
+
+	<a href="#">
+		<i class="md-icon">keyboard_arrow_left</i>
+	</a>	
+</div><!-- /.listing-navigation -->
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="push-top-bottom">
+				<div class="listing-detail">
+					<div class="gallery">
+					    <div class="gallery-item" style="background-image: url({{images.cover}});">					    
+                            <h2 class="company-title pull-bottom">{{company.company.RAISON_SOC}}</h2>					    
+                            <button class="btn-print" ng-print print-element-id="mainContentCompany"><i class="fa fa-fw fa-print"></i>Imprimer</h2>			    
+					    </div><!-- /.gallery-item -->            
+					    <div class="gallery-profile-pic"><img ng-src="{{images.profile}}"></div>
+               			<div class="gallery-infos">
+               				<ul>
+               					<li smooth-scroll="#contact">Contacter</li>
+               					<li smooth-scroll="#localisation">Voir sur la carte</li>
+               					<li class="nohover">    
+			                        <button aria-label="social" class="social-button2 web" href="{{company.infos.WEBSITE}}" ng-if="company.infos.WEBSITE"><i class="fa fa-fw fa-globe"></i> </button >
+			                        <button aria-label="social" class="social-button2 facebook" href="{{company.infos.SOCIAL.FACEBOOK}}" ng-if="company.infos.SOCIAL.FACEBOOK"><i class="fa fa-fw fa-facebook"></i></button  >
+			                        <button aria-label="social" class="social-button2 twitter" href="{{company.infos.SOCIAL.TWITTER}}" ng-if="company.infos.SOCIAL.TWITTER"><i class="fa fa-fw fa-twitter"></i></button >
+			                        <button aria-label="social" class="social-button2 gplus" href="{{company.infos.SOCIAL.GPLUS}}" ng-if="company.infos.SOCIAL.GPLUS"><i class="fa fa-fw fa-google-plus"></i></button  >
+               					</li>
+               				</ul>
+               			</div>
+					</div><!-- /.gallery -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<ui-carousel 
+				slides="company.offers"
+				slides-to-show="3"
+				slides-to-scroll="1"
+				initial-slide="1"
+				autoplay="false"
+				autoplay-speed="2000"
+				dots="false">
+					<carousel-item>
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-image" style="background-image: url('{{item.pic}}');">
+									<a href="javascript:;" ui-sref="app.offer({id:item._id})"></a>
+								</div><!-- /.card-image -->
+
+								<div class="card-content">
+									<h2><a href="javascript:;" ui-sref="app.offer({id:item._id})">{{item.TITLE | limitTo:32}}</a></h2>
+									<p>{{item.DESCRIPTION | limitTo:128}}</p>
+								</div><!-- /.card-content -->
+
+								<div class="card-actions">
+									<span class="card-action-icon price"><i class="md-icon">€</i>{{item.REDUCTION || item.PRICE}}</span>
+									<span class="card-action-icon price-off" ng-if="item.REDUCTION"><i class="md-icon">money_off</i>{{item.PRICE}}</span>
+									<a href="javascript:;" ui-sref="app.offer({id:item._id})" class="card-action-btn btn btn-transparent">Détails</a>
+								</div><!-- /.card-actions -->
+							</div>
+						</div>
+					</carousel-item>
+
+					<!-- For customize carousel next, previous button -->
+					<carousel-prev>
+						<button class="page-link carousel-btn" aria-label="Prev">
+							<span aria-hidden="true">&lt;</span>
+							<span class="sr-only">Prev</span>
+						</button>
+					</carousel-prev>
+					
+					<carousel-next>
+						<button class="page-link carousel-btn" aria-label="Next">
+							<span aria-hidden="true">&gt;</span>
+							<span class="sr-only">Next</span>
+						</button>
+					</carousel-next>
+				</ui-carousel>
+		</div>
+	</div>
+
+	<div class="row">
+        <div class="col-md-12">
+            <div class="card">
+              
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col-md-6 lt-infos">
+                            <h2 class="company-title">{{company.company.RAISON_SOC}}</h2>
+                            <a href="">{{company.company.ADRESSE}}, {{company.company.CP}} {{company.company.VILLE}}</a>
+                            <p>{{company.company.ENSEIGNE}}</p>
+                        </div>
+                        <div class="col-md-6 current-infos">
+	                        <span class="{{openStatus}}"  style="float: right;">{{untilText}}</span>
+	                        <!--<span class="has-reductions"  style="float: right;">Des réductions sont actuellement disponibles</span>-->
+                        </div>
+                    </div>
+                    <div class="row" ng-if="company.infos.DESCRIPTION" style="margin-top: 10px;">
+                        <div class="col-md-12 lt-infos">
+	                        <h2 class="company-title">Description</h2>
+	                        <p>{{company.infos.DESCRIPTION}}</p>
+                        </div>
+                    </div>
+                    <div class="row social-row">
+						<div class="col-md-12 lt-infos">
+	                        <button  class="lt-button contact-button" smooth-scroll="#contact"><span>Afficher contact</span></button >
+	                        <button  class="lt-button map-button" smooth-scroll="#localisation" ng-if="map.center"><span>Carte</span></button>
+	                    </div>
+                    </div>
+                </div>
+              <div>
+        </div>
+    </div>
+
+<div class="opening-hours-wrapper" ng-if="company.infos.HOUR">
+    <table class="opening-hours">
+        <thead>
+            <tr>
+                <th>LUNDI</th>
+                <th>MARDI</th>
+                <th>MERCREDI</th>
+                <th>JEUDI</th>
+                <th>VENDREDI</th>
+                <th>SAMEDI</th>
+                <th>DIMANCHE</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td class="open">
+                	<span ng-if="company.infos.HOUR.mon.closed">fermé</span>
+                    <span ng-if="!company.infos.HOUR.mon.closed" class="from">{{company.infos.HOUR.mon.am | amParse: 'YYYY-MM-JJTHH:mm:ss.000Z' | amDateFormat:'HH:mm' || '?'}}</span> <span  ng-if="!company.infos.HOUR.mon.closed" class="separator">-</span> <span   ng-if="!company.infos.HOUR.mon.closed" class="to">{{company.infos.HOUR.mon.pm | amParse: 'YYYY-MM-JJTHH:mm:ss.000Z' | amDateFormat:'HH:mm'  || '?'}}</span>                          
+                </td>
+
+                <td class="other-day">
+                	<span ng-if="company.infos.HOUR.tue.closed">fermé</span>
+                    <span ng-if="!company.infos.HOUR.tue.closed" class="from">{{company.infos.HOUR.tue.am | amParse: 'YYYY-MM-JJTHH:mm:ss.000Z' | amDateFormat:'HH:mm'  || '?'}}</span> <span  ng-if="!company.infos.HOUR.tue.closed" class="separator">-</span> <span   ng-if="!company.infos.HOUR.tue.closed" class="to">{{company.infos.HOUR.tue.pm | amParse: 'YYYY-MM-JJTHH:mm:ss.000Z' | amDateFormat:'HH:mm'  || '?'}}</span>                           
+                </td>
+
+                <td class="other-day">
+                	<span ng-if="company.infos.HOUR.wen.closed">fermé</span>
+                    <span ng-if="!company.infos.HOUR.wen.closed" class="from">{{company.infos.HOUR.wen.am | amParse: 'YYYY-MM-JJTHH:mm:ss.000Z' | amDateFormat:'HH:mm'  || '?'}}</span> <span  ng-if="!company.infos.HOUR.wen.closed" class="separator">-</span> <span   ng-if="!company.infos.HOUR.wen.closed" class="to">{{company.infos.HOUR.wen.pm | amParse: 'YYYY-MM-JJTHH:mm:ss.000Z' | amDateFormat:'HH:mm'  || '?'}}</span>                          
+                </td>
+
+                <td class="other-day">
+                	<span ng-if="company.infos.HOUR.thu.closed">fermé</span>
+                    <span ng-if="!company.infos.HOUR.thu.closed" class="from">{{company.infos.HOUR.thu.am | amParse: 'YYYY-MM-JJTHH:mm:ss.000Z' | amDateFormat:'HH:mm'  || '?'}}</span> <span  ng-if="!company.infos.HOUR.thu.closed" class="separator">-</span> <span   ng-if="!company.infos.HOUR.thu.closed" class="to">{{company.infos.HOUR.thu.pm | amParse: 'YYYY-MM-JJTHH:mm:ss.000Z' | amDateFormat:'HH:mm'  || '?'}}</span>                         
+                </td>
+
+                <td class="other-day">
+                	<span ng-if="company.infos.HOUR.fri.closed">fermé</span>
+                    <span ng-if="!company.infos.HOUR.fri.closed" class="from">{{company.infos.HOUR.fri.am | amParse: 'YYYY-MM-JJTHH:mm:ss.000Z' | amDateFormat:'HH:mm'  || '?'}}</span> <span  ng-if="!company.infos.HOUR.fri.closed" class="separator">-</span> <span   ng-if="!company.infos.HOUR.fri.closed" class="to">{{company.infos.HOUR.fri.pm | amParse: 'YYYY-MM-JJTHH:mm:ss.000Z' | amDateFormat:'HH:mm'  || '?'}}</span>                           
+                </td>
+
+                <td class="other-day">
+                	<span ng-if="company.infos.HOUR.sat.closed">fermé</span>
+                    <span ng-if="!company.infos.HOUR.sat.closed" class="from">{{company.infos.HOUR.sat.am | amParse: 'YYYY-MM-JJTHH:mm:ss.000Z' | amDateFormat:'HH:mm'  || '?'}}</span> <span  ng-if="!company.infos.HOUR.sat.closed" class="separator">-</span> <span   ng-if="!company.infos.HOUR.sat.closed" class="to">{{company.infos.HOUR.sat.pm | amParse: 'YYYY-MM-JJTHH:mm:ss.000Z' | amDateFormat:'HH:mm'  || '?'}}</span>                       
+                </td>
+
+                <td class="other-day">
+                	<span ng-if="company.infos.HOUR.sun.closed">fermé</span>
+                    <span ng-if="!company.infos.HOUR.sun.closed" class="from">{{company.infos.HOUR.sun.am | amParse: 'YYYY-MM-JJTHH:mm:ss.000Z' | amDateFormat:'HH:mm'  || '?'}}</span> <span  ng-if="!company.infos.HOUR.sun.closed" class="separator">-</span> <span   ng-if="!company.infos.HOUR.sun.closed" class="to">{{company.infos.HOUR.sun.pm | amParse: 'YYYY-MM-JJTHH:mm:ss.000Z' | amDateFormat:'HH:mm'  || '?'}}</span>   </td>
+            </tr>
+        </tbody>
+    </table>
+</div><!-- /.opening-hours-wrapper -->
+ 
+
+<div id="localisation">
+	<ng-map class="profile-map" default-style="true" zoom="13" center="[48.864716, 2.349014]" scrollwheel="false">
+		<marker position="{{position}}" id="0" animation="DROP" on-click="displayInfo(p)"></marker>
+	</ng-map>
+</div><!-- /.listing-position -->				
+
+					<div class="call-to-action-small">
+	<h1>Augmentez la visibilité de cette société</h1>
+	<h2>Indiquer que vous êtes client aide la société à gagner en visibilité sur Latoo.</h2>
+
+	<div class="call-to-action-small-buttons">
+		<a href="javascript:;" class="btn btn-secondary" ng-class="{'my-company': isMyCompany}" ng-click="reclaim()"><i class="fa " ng-class="{'fa-building': !isMyCompany, 'fa-check': isMyCompany}"></i> C'est ma société</a>
+		<a href="javascript:;" class="btn btn-secondary" ng-show="!isMyCompany" ng-click="client()"><i class="fa fa-heart"></i> Je suis client</a>
+		<a ui-sref="app.edit({id: company.company._id})" smooth-scroll="#mainContentCompany" class="btn btn-secondary" ng-show="isMyCompany"><i class="fa fa-pencil"></i> Editer ma société</a>
+	</div><!-- /.call-to-action-small-buttons -->
+</div><!-- /.call-to-action-small --> 				
+					<div class="row" id="contact">
+                <div class="col-md-12 call-to-action-small">
+                        <div class="lt-infos-title">
+                            <div class="col-md-8">
+                                <span class="lt-card-title" style="float: left;">Contacter <b>{{company.company.RAISON_SOC}}</b></span>
+                            </div>
+                            <div class="col-md-4">
+                                <span class="lt-card-title">Réseaux sociaux</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-md-8">
+                                <div class="contact-field phone" ng-if="company.company.NOM"><b>Propriétaire</b><span>{{company.company.NOM}}</span></div>
+                                <div class="contact-field phone" ng-if="company.company.ADRESSE || company.company.CP || company.company.VILLE"><b>Adresse</b><span>{{company.company.ADRESSE}}, {{company.company.CP}} {{company.company.VILLE}}</span></div>
+                                <div class="contact-field phone"ng-if="company.infos.PHONE"><b>Tél.</b><span>{{company.infos.PHONE}}</span></div>
+                                <div class="contact-field phone" ng-if="company.infos.EMAIL"><b>E-mail.</b><span>{{company.infos.EMAIL}}</span></div>
+                            </div>
+                            <div class="col-md-4">
+                            	<p ng-if="!company.infos.SOCIAL && !company.infos.WEBSITE">Ce professionnel n'a pas de réseaux sociaux.</p>
+                                <dl class="lt-social-list">
+                                    <dt class="web" ng-if="company.infos.WEBSITE"><i class="fa fa-globe fa-fw"></i></dt>
+                                    <dd ng-if="company.infos.WEBSITE"><a href="{{company.infos.WEBSITE}}">{{company.infos.WEBSITE}}</a></dd>
+                                    <dt ng-if="company.infos.SOCIAL.FACEBOOK" class="facebook"><i class="fa fa-facebook fa-fw"></i></dt>
+                                    <dd ng-if="company.infos.SOCIAL.FACEBOOK"><a href="{{company.infos.SOCIAL.FACEBOOK}}">{{company.infos.SOCIAL.FACEBOOK}}</a></dd>
+                                    <dt ng-if="company.infos.SOCIAL.TWITTER" class="twitter"><i class="fa fa-twitter fa-fw"></i></dt>
+                                    <dd ng-if="company.infos.SOCIAL.TWITTER"><a href="{{company.infos.SOCIAL.TWITTER}}">{{company.infos.SOCIAL.TWITTER}}</a></dd>
+                                    <dt ng-if="company.infos.SOCIAL.GPLUS" class="gplus"><i class="fa fa-google-plus fa-fw"></i></dt>
+                                    <dd ng-if="company.infos.SOCIAL.GPLUS"><a href="{{company.infos.SOCIAL.GPLUS}}">{{company.infos.SOCIAL.GPLUS}}</a></dd>
+                                    <dt ng-if="company.infos.SOCIAL.SNAPCHAT" class="snapchat"><i class="fa fa-snapchat fa-fw"></i></dt>
+                                    <dd ng-if="company.infos.SOCIAL.SNAPCHAT"><a href="{{company.infos.SOCIAL.SNAPCHAT}}">{{company.infos.SOCIAL.SNAPCHAT}}</a></dd>
+                                    <dt ng-if="company.infos.SOCIAL.INSTA" class="instagram"><i class="fa fa-instagram fa-fw"></i></dt>
+                                    <dd ng-if="company.infos.SOCIAL.INSTA"><a href="{{company.infos.SOCIAL.INSTA}}">{{company.infos.SOCIAL.INSTA}}</a></dd>
+                                </dl>
+                            </div>
+                        </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 call-to-action-small">
+                        <div class="lt-infos-title">
+                            <div class="col-md-12">
+                                <span class="lt-card-title" style="float: left;">Informations juridiques et financières</span>
+                            </div>
+                        </div>
+                        <div style="padding-top:30px">
+                           <dl class="juris-info">
+                                <div ng-cloak ng-repeat="(key, info) in company.company" ng-show="info && isShowable(key)">
+                                    <dt align='left'>{{isShowable(key)}}</dt>
+                                    <dd align='left'><span>{{info}}</span></dd>
+                                </div>
+                           </dl>
+                        </div>
+                </div>
+              </div>
+				 	<!--<h2>Avis sur cette société</h2>
+
+<ul class="comments">
+	<li>
+		<div class="comment">			
+			<div class="comment-author">
+				<a href="#" style="background-image: url('assets/img/tmp/profile-1.jpg');"></a>
+			</div>
+
+			<div class="comment-content">			
+				<div class="comment-meta">
+					<div class="comment-meta-author">
+						Posted by <a href="#">admin</a>
+					</div>
+
+					<div class="comment-meta-reply">
+						<a href="#">Reply</a>
+					</div>
+
+					<div class="comment-meta-date">
+						<span>8:54 PM 11/23/2016</span>
+					</div>
+				</div><
+
+				<div class="comment-body">
+					<div class="comment-rating">
+						<i class="md-icon">star</i>
+						<i class="md-icon">star</i>
+						<i class="md-icon">star</i>
+						<i class="md-icon">star</i>
+						<i class="md-icon">star</i>
+					</div>
+
+					Integer condimentum sodales metus, quis pellentesque nisi tempor at. Quisque ornare efficitur risus eu bibendum. Donec feugiat consequat magna in interdum. Donec malesuada orci et mi fermentum
+				</div>
+			</div>
+		</div>	
+
+		<ul>
+			<li>
+				<div class="comment">			
+					<div class="comment-author">
+						<a href="#" style="background-image: url('assets/img/tmp/profile-2.jpg');"></a>
+					</div><
+
+					<div class="comment-content">			
+						<div class="comment-meta">
+							<div class="comment-meta-author">
+								Posted by <a href="#">admin</a>
+							</div>
+
+							<div class="comment-meta-reply">
+								<a href="#">Reply</a>
+							</div>
+
+							<div class="comment-meta-date">
+								<span>8:54 PM 11/23/2016</span>
+							</div>
+						</div>
+
+						<div class="comment-body">
+							<div class="comment-rating">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star-half-o"></i>
+								<i class="fa fa-star-o"></i>
+							</div>
+
+							Donec malesuada orci et mi fermentum, ac tincidunt arcu tincidunt. Ut fringilla tellus sem, quis rhoncus dolor condimentum id. Vivamus ut commodo felis. Fusce in lacus egestas, mattis ex et, molestie est.
+						</div>
+					</div>
+				</div>								
+			</li>
+		</ul>
+	</li>
+
+
+</ul>
+
+<h2>Ecrire un commentaire</h2>
+
+<div class="comment-create clearfix">
+	<form method="post" action="?">
+		<div class="form-group">
+			<label>Message</label>
+			<textarea class="form-control" rows="5"></textarea>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label>Name</label>
+					<input type="text" class="form-control">
+				</div>
+			</div>
+
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label>E-mail</label>
+					<input type="email" class="form-control">
+				</div>
+			</div>
+						
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label>URL</label>
+					<input type="text" class="form-control">
+				</div>	
+			</div>
+		</div>
+
+		<div class="form-group-btn">
+			<a href="#" class="btn btn-primary btn-large pull-right">Post Comment</a>
+		</div>
+	</form>
+</div>
+			 	</div><!-- /.listing-detail -->
+			</div><!-- /.push-top-bottom -->
+		</div><!-- /.col-sm-9 -->
+
+	</div><!-- /.row -->
+</div><!-- /.container-->
+	            </div><!-- /.content -->
+	        </div><!-- /.main-inner -->
+	    </div><!-- /.main -->
+    </div><!-- /.main-wrapper -->

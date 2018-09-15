@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Latoo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+    <link rel="stylesheet" href="bower_components/ngprogress/ngProgress.css" />
+    <link rel="stylesheet" href="bower_components/ng-img-crop/compile/minified/ng-img-crop.css" />
+    <link rel="stylesheet" href="bower_components/ng-img-crop-full-extended/compile/minified/ng-img-crop.css" />
+    <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.css" />
+    <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-carousel/dist/ui-carousel.css" />
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.css" />
+    <link rel="stylesheet" href="bower_components/owl.carousel/dist/assets/owl.carousel.css" />
+    <link rel="stylesheet" href="bower_components/owl.carousel/dist/assets/owl.theme.default.css" />
+    <link rel="stylesheet" href="bower_components/pikaday/css/pikaday.css" />
+    <link rel="stylesheet" href="bower_components/handsontable/dist/handsontable.css" />
+    <!-- endbower -->  
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link href="styles/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="styles/visit-card.css" rel="stylesheet" type="text/css">
+    <link href="styles/latoo.css" rel="stylesheet" type="text/css">       
+    <link href="styles/offer-select.css" rel="stylesheet" type="text/css">       
+    <link href="styles/materialist.css" rel="stylesheet" type="text/css" id="css-primary">
+    <!-- endbuild -->
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBk5mH4vCbcA_-zfRWGgCnNHCBurjAQnMI&libraries=places&sensor=false"></script>
+  </head>
+  <body ng-app="latooApp">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+
+        <div ui-view></div>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/ngmap/build/scripts/ng-map.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
+    <script src="bower_components/ngprogress/build/ngprogress.min.js"></script>
+    <script src="bower_components/angular-progress-arc/angular-progress-arc.js"></script>
+    <script src="bower_components/ng-img-crop/compile/minified/ng-img-crop.js"></script>
+    <script src="bower_components/flow.js/dist/flow.js"></script>
+    <script src="bower_components/ng-flow/dist/ng-flow.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/ng-img-crop-full-extended/compile/minified/ng-img-crop.js"></script>
+    <script src="bower_components/ng-tags-input/ng-tags-input.js"></script>
+    <script src="bower_components/rangy/rangy-core.js"></script>
+    <script src="bower_components/rangy/rangy-classapplier.js"></script>
+    <script src="bower_components/rangy/rangy-highlighter.js"></script>
+    <script src="bower_components/rangy/rangy-selectionsaverestore.js"></script>
+    <script src="bower_components/rangy/rangy-serializer.js"></script>
+    <script src="bower_components/rangy/rangy-textrange.js"></script>
+    <script src="bower_components/textAngular/dist/textAngular.js"></script>
+    <script src="bower_components/textAngular/dist/textAngular-sanitize.js"></script>
+    <script src="bower_components/textAngular/dist/textAngularSetup.js"></script>
+    <script src="bower_components/angular-ui-carousel/dist/ui-carousel.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.js"></script>
+    <script src="bower_components/owl.carousel/dist/owl.carousel.js"></script>
+    <script src="bower_components/angular-owl-carousel2/src/angular-owl-carousel-2.js"></script>
+    <script src="bower_components/hot-formula-parser/dist/formula-parser.js"></script>
+    <script src="bower_components/numbro/numbro.js"></script>
+    <script src="bower_components/pikaday/pikaday.js"></script>
+    <script src="bower_components/handsontable/dist/handsontable.js"></script>
+    <script src="bower_components/ngHandsontable/dist/ngHandsontable.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+        <script src="https://checkout.stripe.com/checkout.js"></script> <!--<script type="text/javascript" src="scripts/vendor/checkout.js"></script>-->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+
+        <script type="text/javascript" src="scripts/vendor/jquery.js"></script>
+        <script type="text/javascript" src="scripts/vendor/tether.min.js"></script>
+        <script type="text/javascript" src="scripts/vendor/bootstrap.min.js"></script>
+        <script type="text/javascript" src="scripts/vendor/leaflet.js"></script>
+        <script type="text/javascript" src="scripts/vendor/leaflet.markercluster.js"></script>
+        <script type="text/javascript" src="scripts/vendor/owl.carousel.min.js"></script>
+        <script type="text/javascript" src="scripts/vendor/materialist.js"></script>
+        <script type="text/javascript" src="scripts/vendor/print.js"></script>
+
+        <script src="scripts/app.js"></script>
+
+        <script src="scripts/services/api.js"></script>
+        <script src="scripts/services/research-factory.js"></script>
+
+        <script src="scripts/directives/scroll-and-apply.js"></script>
+        <script src="scripts/directives/smooth-scroll.js"></script>
+        <script src="scripts/directives/select-on-click.js"></script>
+        <script src="scripts/directives/only-digit.js"></script>
+
+        <script src="scripts/controllers/edit-company.js"></script>
+        <script src="scripts/controllers/admin-edit-company.js"></script>
+        <script src="scripts/controllers/admin-pricing.js"></script>
+        <script src="scripts/controllers/admin-user-editor.js"></script>
+        <script src="scripts/controllers/manageCompanies.js"></script>
+        <script src="scripts/controllers/manageCompanies2.js"></script>
+        <script src="scripts/controllers/admin.js"></script>
+        <script src="scripts/controllers/profile.js"></script>
+        <script src="scripts/controllers/editor.js"></script>
+        <script src="scripts/controllers/editOffer.js"></script>
+        <script src="scripts/controllers/createOffer.js"></script>
+        <script src="scripts/controllers/offer.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/research.js"></script>
+        <script src="scripts/controllers/reset.js"></script>
+        <script src="scripts/controllers/wellcome.js"></script>
+        <script src="scripts/controllers/mail.js"></script>
+        <script src="scripts/controllers/results.js"></script>
+        <script src="scripts/controllers/company.js"></script>
+        <script src="scripts/controllers/users.js"></script>
+        <script src="scripts/controllers/myusers.js"></script>
+        <script src="scripts/controllers/subs.js"></script>
+        <script src="scripts/controllers/addPlayer.js"></script>
+        <script src="scripts/controllers/companies.js"></script>
+        <script src="scripts/controllers/creator.js"></script>
+        <script src="scripts/controllers/addClient.js"></script>
+        <!-- endbuild -->
+</body>
+<script>
+    var licenses = "lic_4133cf4e-178a-41d4-ac54-25229"; //replace your license key
+    var SIConfiguration = {
+        "showmodal":true,
+        "path": {
+            "authpage": "https://latoo.fr/oauth.html" //replace the web url of oauth.html
+        },
+        "callbacks": {
+            "proceed": function (service, response, product) {
+                
+                var mails = [];
+                var contactsForSending = socialinviter.contactimporter.getSelectedContacts().addressbook;
+                
+                contactsForSending.forEach(function(usr){
+                    if(usr.email && usr.email[0])
+                        mails.push(usr.email[0]);
+                });
+                
+                if(mails.length>0)
+                    window.sendinvites(mails);
+                
+                
+                return false;
+            }
+        }
+    }
+    var fileref=document.createElement("script");fileref.setAttribute("type","text/javascript");
+    fileref.setAttribute("id","apiscript");fileref.setAttribute("src","//socialinviter.com/all-latest.js?keys="+licenses);
+    try{document.body.appendChild(fileref)}catch(a){document.getElementsByTagName("head")[0].appendChild(fileref);}
+    var loadInitFlg=0,socialinviter,loadConf=function(){window.setTimeout(function(){$(document).ready(function(){loadInitFlg++;
+    socialinviter?socialinviter.load(SIConfiguration):15>loadInitFlg&&window.setTimeout(loadConf,200)})},
+    250)};window.setTimeout(loadConf,200);
+</script>
+</html>

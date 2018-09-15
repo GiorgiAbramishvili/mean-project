@@ -1,0 +1,61 @@
+<div class="box reviewCompany" >
+
+        
+        <div class="grid_filters">
+           
+                <button class="btn btn-sm stats_error" ng-click="filterTable('error')">
+                    With Error ({{global.companyImportStats.error}})
+                </button>
+                
+                <button class="btn btn-sm stats_localized btn-primary" ng-click="filterTable('localized')">
+                    New & Localized ({{global.companyImportStats.localized}})
+                </button>
+                <button class="btn btn-sm stats_not_localized" ng-click="filterTable('not_localized')">
+                    New & Not Localized ({{global.companyImportStats['not_localized']}})
+                </button>
+                
+                <button class="btn btn-sm stats_exists_localized" ng-click="filterTable('exists_localized')">
+                        Exists & Localized ({{global.companyImportStats.exists_localized}})
+                </button>
+                <button class="btn btn-sm stats_exists_not_localized" ng-click="filterTable('exists_not_localized')">
+                        Exists & Not Localized ({{global.companyImportStats['exists_not_localized']}})
+                </button> 
+                 
+                <button class="btn btn-sm btn-success" ng-click="saveTable()" style="float: right;">
+                        <i class="md-icon">save</i>
+                        SAVE 
+                </button>
+            
+            
+        </div>
+        <br>
+        <hot-table 
+            settings="{colHeaders: true, 
+                contextMenu: true, manualColumnResize: true, manualRowResize: true, manualColumnMove: true}"
+            datarows="global.companyImportsGrid"
+            height="800"
+        >
+        <hot-column data="ID_CLIENT" title="'ID_CLIENT'"></hot-column>
+        <hot-column data="SIRET" title="'SIRET'"></hot-column>
+        <hot-column data="SIREN" title="'SIREN'"></hot-column>
+        <hot-column data="RAISON_SOC" title="'RAISON_SOC'"></hot-column>
+        <hot-column data="NOM" title="'NOM'"></hot-column>
+        <hot-column data="ENSEIGNE" title="'ENSEIGNE'"></hot-column>
+        <hot-column data="ADRESSE" title="'ADRESSE'"></hot-column>
+        <hot-column data="CP" title="'CP'"></hot-column>
+        <hot-column data="VILLE" title="'VILLE'"></hot-column>
+        <hot-column data="APE" title="'APE'"></hot-column>
+        <hot-column data="NAF" title="'NAF'"></hot-column>
+        <!-- ID_CLIENT	SIRET	SIREN	RAISON_SOC	NOM	DATE_CREA	ENSEIGNE	ADRESSE	CP	VILLE	APE	NAF -->
+
+        </hot-table>
+        
+    <!-- <div class="box" align="center">
+        <button class="btn btn-primary" ng-click="closeModal()">
+            Fermer
+        </button> -->
+         <!--<button class="btn btn-green" ng-click="closeModal()" ng-if="global.uploading">
+            Naviguer pendant le chargement
+        </button>
+    </div> -->
+</div>

@@ -1,0 +1,5 @@
+<div class="page-wrapper">
+	<div ng-include="'views/partial/header.html'"></div>
+	<div ui-view></div>
+	<div ng-show="!isLoggedIn" ng-include="'views/partial/footer.html'"></div>
+</div>

@@ -1,0 +1,92 @@
+<div class="admin-content" id="top">
+	<div class="container-fluid">
+		<div class="admin-title">
+			<h1>Profil</h1>
+
+			<!-- <ul class="breadcrumb">
+				<li><a ui-sref="app.home">Latoo</a> <i class="md-icon">keyboard_arrow_right</i></li>
+
+				<li><a ui-sref="admin.dashboard">Dashboard</a> <i class="md-icon">keyboard_arrow_right</i></li>
+
+
+
+				<li class="active">Profil</li>
+
+            </ul> -->
+            
+            <!-- /.breadcrumb -->	
+
+		</div><!-- /.admin-title -->
+
+		<div class="admin-box">
+
+			<div class="admin-content" id="top">
+			<h2>Informations générales</h2>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="input-group edit-form" style="width: 100%"><label>Prénom</label>
+							<input type="text" class="form-control" placeholder="Prénom" ng-model="user.firstName">
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="input-group edit-form" style="width: 100%"><label>Nom</label>
+							<input type="text" class="form-control" placeholder="Nom" ng-model="user.lastName">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="input-group edit-form" style="width: 100%"><label>Email</label>
+							<input type="text" class="form-control" required placeholder="Email" ng-model="user.email">
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="input-group edit-form" style="width: 100%"><label>Téléphone</label>
+							<input type="text" class="form-control" placeholder="Téléphone" ng-model="user.phone">
+						</div>
+					</div>
+
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<label>Biographie</label>
+						<div class="input-group edit-form" style="width: 100%">
+							<textarea placeholder="Biographie" style="width: 100%" ng-model="user.biography"></textarea>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			
+		</div>
+
+		<div class="admin-box">
+			<h2>Sécurité</h2>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="input-group edit-form" style="width: 100%"><label>Ancien mot de passe</label>
+							<input type="password" class="form-control" required placeholder="Ancien mot de passe" ng-model="pass.oldPassword">
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="input-group edit-form" style="width: 100%"><label>Nouveau mot de passe</label>
+							<input type="password" class="form-control" required placeholder="Nouveau mot de passe" ng-model="pass.newPassword">
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="input-group edit-form" style="width: 100%"><label>Confirmez le mot de passe</label>
+							<input type="password" class="form-control" placeholder="Confirmez le mot de passe" ng-model="pass.newPassword2">
+						</div>
+					</div>
+
+				</div>
+		</div>
+
+		<a href="javascript:;" class="btn btn-success btn-block" ng-class="{'disabled': saving}" style="height:50px;line-height: 40px" ng-click="save()">
+			<span ng-show="!saving"><i class="md-icon">save</i>Sauvegarder</span>
+			<span ng-show="saving"><i class="fa fa-spinner fa-pulse fa-fw"></i>Sauvegarde....</span>
+		</a>
+	</div><!-- /.admin-box -->
+
+</div><!-- /.admin-content -->	
+

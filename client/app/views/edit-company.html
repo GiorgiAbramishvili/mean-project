@@ -1,0 +1,444 @@
+<div class="header-blank larger" scroll-and-apply="sticky"></div>
+
+<div class="modal fade confirm-delet-modal" tabindex="-1" role="dialog" aria-labelledby="confirmDeletModal" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Confirmer la suppression ?</h2>
+            </div>
+            <div class="modal-body">
+                Vous êtes sur le point de supprimer l'offre <strong>{{deletingOffer.TITLE}}</strong> de façon irréversible.
+                Êtes vous sur de vouloir continuer ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-danger" ng-click="deleteOffer()">Supprimer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main-wrapper"  id="mainContentCompany" >
+   <div class="main">
+       <div class="main-inner">
+            <div class="editor-progress" scroll-and-apply="sticky">
+
+                <div class="container">
+                   <div class="row">
+                        <ul class="fast-nav" style="margin-left: 10%">
+                            <li smooth-scroll="#part1" delta="150"><i class="fa fa-info"></i><span>Général</span></li><!--
+                         --><li smooth-scroll="#part2" delta="150"><i class="fa fa-clock-o"></i><span>Horaires</span></li><!--
+                         --><li smooth-scroll="#part3" delta="150"><i class="fa fa-map-marker"></i><span>Localisation</span></li><!--
+                         --><li smooth-scroll="#contact" delta="150"><i class="fa fa-phone"></i><span>Contact</span></li><!--
+                         --><li smooth-scroll="#part5" delta="150"><i class="fa fa-plus"></i><span>Avancé</span></li><!--
+                         --><li class="save" ng-click="saveCompanyData()"><i class="fa fa-save"></i><span>Sauvegarder</span></li><!--
+                         --><li ng-if="!creator" class="see" ui-sref="app.company({id: company.company._id})"><i class="fa fa-eye"></i><span>Voir</span></li><!--
+                         --><li ng-if="creator" class="see" ui-sref="app.profile.companies"><i class="fa fa-times"></i><span>Annuler</span></li>
+                        </ul>
+                        <!--<div class="progression">
+                            <div class="col-md-6 percentage">
+                                <p>Profil rempli à 20%</p>
+                            </div>
+                            <div class="col-md-6 percentage">
+                                <progress-arc
+                                    size="50"
+                                    stroke="#45ccce"
+                                    stroke-width="5"
+                                    complete="0.5">
+                                </progress-arc>
+                            </div>
+                        </div>-->
+                    </div>
+                   
+                </div>
+                 <div class="row  error-field" ng-if="errors">
+                      <div class="col-md-12">
+                        {{errors}}
+                      </div>
+                    </div>
+            </div>
+
+
+           <div class="content">
+
+            <div class="lt-wrapper" >
+
+                <div class="container">
+                   <div class="row">
+                      <div class="col-md-12">
+                         <div class="push-top-bottom">
+                            <div class="listing-detail">
+                               <div class="gallery" ng-if="!creator">
+                                   <div class="gallery-item" ngf-select ng-model="coverFile" accept="image/*">
+                                      <img ng-src="{{images.cover}}" class="coverImage">
+                                      <div class="loading-overlay" ng-show="uploading.cover">
+                                        <div class="icon">
+                                          <i class="fa fa-spinner fa-pulse fa-4x fa-fw"></i>
+                                          <span class="sr-only">Chargement...</span>
+                                        </div>
+                                      </div>
+                                      <div class="modif-overlay" >
+                                        <i class="fa fa-fw fa-pencil"></i> Changer l'image
+                                      </div>
+                                      <h2 class="company-title pull-bottom">
+                                      </h2>					     
+                                    </div><!-- /.gallery-item -->   
+                                    <div ng-show="picFile" class="croparea" ngf-drop ng-model="picFile" ngf-pattern="image/*">
+                                         <img-crop  image="picFile  | ngfDataUrl"                 
+                                                    result-image="croppedDataUrl" ng-init="croppedDataUrl=''" area-type="square">
+                                        </img-crop>
+                                        <button class="btn btn-block btn-primary" ng-click="sendPicture(croppedDataUrl, picFile.name, 'profile')">Valider</button>
+                                        <button class="btn btn-block btn-secondary" ng-click="picFile = undefined">Annuler</button>
+                                    </div> 
+                                    <div ng-show="coverFile" class="croparea" ngf-drop ng-model="coverFile" ngf-pattern="image/*">
+                                         <img-crop  image="coverFile  | ngfDataUrl"                 
+                                                    result-image="croppedDataUrlCover" aspect-ratio="3.5" ng-init="croppedDataUrlCover=''" area-type="rectangle" result-image-size="{w: 1110, h:300}">
+                                        </img-crop>
+                                        <button class="btn btn-block btn-primary" ng-click="sendPicture(croppedDataUrlCover, coverFile.name, 'cover')">Valider</button>
+                                        <button class="btn btn-block btn-secondary" ng-click="coverFile = undefined">Annuler</button>
+                                    </div>        
+                                    <div class="gallery-profile-pic" ngf-select ng-model="picFile" accept="image/*">
+                                        <img ng-show="picFile" ng-src="{{croppedDataUrl}}">
+                                        <img ng-show="!picFile" ng-src="{{images.profile}}">
+                                        <div class="loading-overlay" ng-show="uploading.profile">
+                                          <div class="icon">
+                                            <i class="fa fa-spinner fa-pulse fa-4x fa-fw"></i>
+                                            <span class="sr-only">Chargement...</span>
+                                          </div>
+                                        </div>
+                                        <div class="modif-overlay">
+                                          <i class="fa fa-fw fa-pencil"></i> Changer l'image
+                                        </div>
+                                    </div>
+                                    <div class="gallery-infos">
+                                     <ul>
+                                        <li ngf-select ng-model="picFile" accept="image/*"> <i class="fa fa-fw fa-arrow-left" ></i>Photo de profil</li>
+                                        <li ngf-select ng-model="coverFile" accept="image/*">Photo de couverture<i class="fa fa-fw fa-arrow-up"></i></li>
+                                        <li  ui-sref="app.createOffer({for:company.company._id})"><i class="fa fa-fw fa-plus"></i> Créer une offre</li>
+                                    </ul>
+                                </div>
+                            </div><!-- /.gallery -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row"  id="part1">
+                <div class="col-md-12" >
+                    <div class="card">
+
+                        <div class="card-content">
+                            <div class="row">
+                                <div class="col-md-12 lt-infos">
+                                   <div class="input-group edit-form col-sm-12">
+                                       <input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Raison sociale" ng-model="company.company.RAISON_SOC" required>									
+                                   </div>
+                                   <div class="input-group edit-form col-sm-12">
+                                       <input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Enseigne" ng-model="company.company.ENSEIGNE" required>									
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="row" style="margin-top: 10px;">
+                            <div class="col-md-12 lt-infos">
+                               <h2 class="company-title">Description</h2>	                        
+                               <div class="input-group edit-form col-sm-12">
+                                <textarea class="form-control ng-pristine ng-valid ng-empty ng-touched" row="5" placeholder="Description" ng-model="company.infos.DESCRIPTION" ></textarea>									
+                            </div>
+                          </div>
+                          <div class="row" style="margin: 5px;">
+                            <div class="col-md-12 lt-infos">
+                              <h2 class="company-title" style="margin-top: 10px">Mots-clés (séparé par des virgules)
+                              <i class="fa fa-question-circle" uib-tooltip="Les mots clés permettent de trouver plus facilement votre société"></i></h2>
+                              <tags-input ng-model="tmp.TAGS" placeholder="Ajoutez des mots-clés..."></tags-input>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+                <div>
+                </div>
+            </div>
+
+            <div class="opening-hours-wrapper"  id="part2">
+                <table class="opening-hours">
+                    <thead>
+                        <tr>
+                            <th>LUNDI</th>
+                            <th>MARDI</th>
+                            <th>MERCREDI</th>
+                            <th>JEUDI</th>
+                            <th>VENDREDI</th>
+                            <th>SAMEDI</th>
+                            <th>DIMANCHE</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td class="open">
+                                <span class="from hour-form">
+                                   <input type="time" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="HH:mm" ng-model="company.infos.HOUR.mon.am" ng-disabled="company.infos.HOUR.mon.closed">
+                               </span> 
+                               <span class="separator">-</span>  
+                               <span class="to hour-form">
+                                   <input type="time" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="HH:mm" ng-model="company.infos.HOUR.mon.pm" ng-disabled="company.infos.HOUR.mon.closed">
+                               </span>      
+                           </td>
+
+                           <td class="other-day">
+                            <span class="from hour-form">
+                               <input type="time" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="HH:mm" ng-model="company.infos.HOUR.tue.am" ng-disabled="company.infos.HOUR.tue.closed">
+                           </span> 
+                           <span class="separator">-</span>  
+                           <span class="to hour-form">
+                               <input type="time" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="HH:mm" ng-model="company.infos.HOUR.tue.pm" ng-disabled="company.infos.HOUR.tue.closed">
+                           </span>                        
+                       </td>
+
+                       <td class="other-day">
+                        <span class="from hour-form">
+                           <input type="time" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="HH:mm" ng-model="company.infos.HOUR.wen.am" ng-disabled="company.infos.HOUR.wen.closed">
+                       </span> 
+                       <span class="separator">-</span>  
+                       <span class="to hour-form">
+                           <input type="time" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="HH:mm" ng-model="company.infos.HOUR.wen.pm" ng-disabled="company.infos.HOUR.wen.closed">
+                       </span>                       
+                   </td>
+
+                   <td class="other-day">
+                    <span class="from hour-form">
+                    	<input type="time" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="HH:mm" ng-model="company.infos.HOUR.thu.am" ng-disabled="company.infos.HOUR.thu.closed">
+                    </span> 
+                    <span class="separator">-</span>  
+                    <span class="to hour-form">
+                    	<input type="time" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="HH:mm" ng-model="company.infos.HOUR.thu.pm" ng-disabled="company.infos.HOUR.thu.closed">
+                    </span>                        
+                </td>
+
+                <td class="other-day">
+                    <span class="from hour-form">
+                    	<input type="time" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="HH:mm" ng-model="company.infos.HOUR.fri.am" ng-disabled="company.infos.HOUR.fri.closed">
+                    </span> 
+                    <span class="separator">-</span>  
+                    <span class="to hour-form">
+                    	<input type="time" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="HH:mm" ng-model="company.infos.HOUR.fri.pm" ng-disabled="company.infos.HOUR.fri.closed">
+                    </span>                       
+                </td>
+
+                <td class="other-day">
+                    <span class="from hour-form">
+                    	<input type="time" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="HH:mm" ng-model="company.infos.HOUR.sat.am" ng-disabled="company.infos.HOUR.sat.closed">
+                    </span> 
+                    <span class="separator">-</span>  
+                    <span class="to hour-form">
+                    	<input type="time" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="HH:mm" ng-model="company.infos.HOUR.sat.pm" ng-disabled="company.infos.HOUR.sat.closed">
+                    </span>                       
+                </td>
+
+                <td class="other-day">
+                    <span class="from hour-form">
+                    	<input type="time" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="HH:mm" ng-model="company.infos.HOUR.sun.am" ng-disabled="company.infos.HOUR.sun.closed">
+                    </span> 
+                    <span class="separator">-</span>  
+                    <span class="to hour-form">
+                    	<input type="time" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="HH:mm" ng-model="company.infos.HOUR.sun.pm" ng-disabled="company.infos.HOUR.sun.closed">
+                    </span>  </td>
+                </tr>
+                <tr>
+                    <td class="other-day">
+                        <input type="checkbox" ng-model="company.infos.HOUR.mon.closed"/> Fermé
+                    </td>
+                    <td class="other-day">
+                        <input type="checkbox" ng-model="company.infos.HOUR.tue.closed"/> Fermé</td>
+                    <td class="other-day">
+                        <input type="checkbox" ng-model="company.infos.HOUR.wen.closed"/> Fermé</td>
+                    <td class="other-day">
+                        <input type="checkbox" ng-model="company.infos.HOUR.thu.closed"/> Fermé</td>
+                    <td class="other-day">
+                        <input type="checkbox" ng-model="company.infos.HOUR.fri.closed"/> Fermé</td>
+                    <td class="other-day">
+                        <input type="checkbox" ng-model="company.infos.HOUR.sat.closed"/> Fermé</td>
+                    <td class="other-day">
+                        <input type="checkbox" ng-model="company.infos.HOUR.sun.closed"/> Fermé</td>
+                </tr>
+            </tbody>
+        </table>
+    </div><!-- /.opening-hours-wrapper -->
+
+    <div class="row"  id="part3">
+        <div class="col-md-12">
+            <div class="input-group edit-form col-sm-12">
+                <input type="text" places-auto-complete size=80
+                class="form-control ng-pristine ng-valid ng-empty ng-touched"
+                ng-model="address"
+                placeholder="Recherchez votre société ou tapez son adresse" 
+                on-place-changed="placeChanged()" />                              
+            </div>
+        </div>
+    </div>
+    <div id="localisation">
+       <ng-map class="profile-map" default-style="true" zoom="13" center="[48.864716, 2.349014]" scrollwheel="false">
+          <marker position="{{position}}" id="0" animation="DROP" on-click="displayInfo(p)"></marker>
+      </ng-map>
+  </div><!-- /.listing-position -->				
+
+
+  <div class="row" id="contact" >
+    <div class="col-md-12 call-to-action-small">
+        <div class="lt-infos-title">
+            <div class="col-md-8">
+                <span class="lt-card-title" style="float: left;">Contacter <b>{{company.company.RAISON_SOC}}</b></span>
+            </div>
+            <div class="col-md-4">
+                <span class="lt-card-title">Réseaux sociaux</span>
+            </div>
+        </div>
+        <div>
+            <div class="col-md-8">
+                <div class="contact-field phone"><b>Propriétaire</b><span>
+                   <div class="input-group edit-form contact col-sm-12">
+                      <input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Nom du propriétaire" ng-model="company.company.NOM" >						
+                  </div>
+              </span></div>
+              <div class="contact-field phone"><b>Téléphone.</b><span>
+               <div class="input-group edit-form contact col-sm-12">
+                  <input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Numéro de téléphone" ng-model="company.infos.PHONE" >						
+              </div></span></div>
+              <div class="contact-field phone"><b>E-mail</b><span>
+               <div class="input-group edit-form contact col-sm-12">
+                  <input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Email de contact" ng-model="company.infos.EMAIL" >						
+              </div></span></div>
+          </div>
+          <div class="col-md-4">
+           <div class="lt-social-list">
+               <div class="input-group edit-form social col-sm-12">
+                   <div class="input-group-addon">
+                     <i class="fa fa-globe fa-fw"></i>
+                 </div>
+                 <input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Site web" ng-model="company.infos.WEBSITE" >						
+             </div>
+
+             <div class="input-group edit-form social col-sm-12">
+               <div class="input-group-addon">
+                 <i class="fa fa-facebook fa-fw"></i>
+             </div>
+             <input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Page facebook" ng-model="company.infos.SOCIAL.FACEBOOK" >						
+         </div>
+
+         <div class="input-group edit-form social col-sm-12">
+           <div class="input-group-addon">
+             <i class="fa fa-twitter fa-fw"></i>
+         </div>
+         <input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Compte twitter" ng-model="company.infos.SOCIAL.TWITTER" >						
+     </div>
+
+     <div class="input-group edit-form social col-sm-12">
+       <div class="input-group-addon">
+         <i class="fa fa-google-plus fa-fw"></i>
+     </div>
+     <input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Compte Google+" ng-model="company.infos.SOCIAL.GPLUS" >						
+ </div>
+
+ <div class="input-group edit-form social col-sm-12">
+   <div class="input-group-addon">
+     <i class="fa fa-snapchat fa-fw"></i>
+ </div>
+ <input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Compte Snapchat" ng-model="company.infos.SOCIAL.SNAPCHAT" >						
+</div>
+
+<div class="input-group edit-form social col-sm-12">
+   <div class="input-group-addon">
+     <i class="fa fa-instagram fa-fw"></i>
+ </div>
+ <input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Compte Instagram" ng-model="company.infos.SOCIAL.INSTA" >						
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"  id="part5">
+    <div class="col-md-12 call-to-action-small">
+        <div class="lt-infos-title">
+            <div class="col-md-12">
+                <span class="lt-card-title" style="float: left;">Informations juridiques et financières</span>
+            </div>
+        </div>
+        <div style="padding-top:30px">
+         <dl class="juris-info no-padding">
+            <div ng-cloak>
+                <dt align='left'>SIRET</dt>
+                <dd align='left'><span  class="input-group edit-form juris">
+                    <input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="SIRET" ng-model="company.company.SIRET" >     
+                </span></dd>
+                <dt align='left'>SIREN</dt>
+                <dd align='left'><span  class="input-group edit-form juris">
+                    <input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="SIREN" ng-model="company.company.SIREN" >     
+                </span></dd>
+                <dt align='left'>Date de création</dt>
+                <dd align='left'><span  class="input-group edit-form juris">
+                    <input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="JJ/MM/YYYY" ng-model="company.company.DATE_CREA" >     
+                </span></dd>
+                <dt align='left'>Code APE</dt>
+                <dd align='left'><span  class="input-group edit-form juris">
+                    <input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Code APE" ng-model="company.company.APE" >     
+                </span></dd>
+                <dt align='left'>NAF</dt>
+                <dd align='left'><span  class="input-group edit-form juris">
+                    <input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Description NAF" ng-model="company.company.NAF" >     
+                </span></dd>
+            </div>
+        </dl>
+    </div>
+</div>
+</div>
+
+    <div class="row">
+        <div class="admin-box no-padding">
+            <div class="lt-infos-title">
+                <div class="col-md-12">
+                    <span class="lt-card-title" style="float: left;">Offres</span>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <a href="javascript:;" class="btn btn-primary" ui-sref="app.createOffer({for:company.company._id})"><i class="md-icon">add</i> Créer une offre</a>
+            </div>
+            <table class="table small-header">
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Description</th>
+                        <th>Prix</th>
+                        <th>Reduc</th>
+                        <th>Début</th>
+                        <th>Fin</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                
+                <tbody id="test">
+                    <tr class="offer-{{$index}}" ng-repeat="offer in company.offers">
+                        <td>{{offer.TITLE | limitTo:16}}</td>
+                        <td>{{offer.DESCRIPTION | limitTo:32}}</td>
+                        <td>{{offer.PRICE}}€</td>
+                        <td>{{offer.REDUCTION}}€</td>
+                        <td>{{offer.START_DATE | date:'dd/MM/yy'}}</td>
+                        <td>{{offer.END_DATE | date:'dd/MM/yy'}}</td>
+                        <td>
+                            <a href="javascript:;" class="btn btn-primary" ui-sref="app.offer({id:offer._id})"><i class="md-icon">remove_red_eye</i> Voir</a>
+                            <a href="javascript:;" class="btn btn-primary" ui-sref="app.editOffer({id:offer._id})"><i class="md-icon">edit</i> Editer</a>
+                            <a href="javascript:;" class="btn btn-secondary" ng-click="deleteOfferDialog(offer)"><i class="md-icon">delete</i> Supprimer</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div><!-- /.listing-detail -->
+</div><!-- /.push-top-bottom -->
+</div><!-- /.col-sm-9 -->
+
+</div><!-- /.row -->
+</div><!-- /.container-->
+</div><!-- /.content -->
+</div><!-- /.main-inner -->
+</div><!-- /.main -->
+</div><!-- /.main-wrapper -->

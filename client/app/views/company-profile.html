@@ -1,0 +1,177 @@
+<div class="main-wrapper">
+	    <div class="main">
+	        <div class="main-inner">
+	        	
+
+	            <div class="content">
+	                <div class="content-title">
+	<div class="container">
+		<h1>Créer société</h1>
+
+		<!-- <ul class="breadcrumb">
+			<li><a href="index.html">Latoo</a> <i class="md-icon">keyboard_arrow_right</i></li>
+
+			
+				<li class="active">Créer une société</li>
+			
+        </ul> -->
+        <!-- /.breadcrumb -->
+	</div><!-- /.container -->
+</div><!-- /.content-title -->
+
+<div class="container push-top-bottom">
+	<div class="box">
+		<form name="companyForm">		
+			<fieldset>
+				<legend>Informations</legend>		
+
+				<div class="form-group col-md-12">
+					<label>Nom du propriétaire</label>
+	                <input name="name" ng-model="associateCompany.NOM" class="form-control" required> 
+	                <div class="error-messages" ng-messages="companyForm.name.$error" role="alert" multiple ng-show="!companyForm.name.$pristine">
+	                  <div ng-message="required" class="alert alert-danger">Ce champ est obligatoire</div>
+	                </div>
+				</div><!-- /.form-group -->
+
+				<div class="form-group col-md-12">
+					<label>Raison sociale</label>
+	                <input class="form-control" name="raison" ng-model="associateCompany.RAISON_SOC" required>
+	                <div class="error-messages" ng-messages="companyForm.raison.$error" role="alert" multiple ng-show="!companyForm.raison.$pristine">
+	                  <div ng-message="required" class="alert alert-danger">Ce champ est obligatoire</div>
+	                </div>
+				</div><!-- /.form-group -->
+
+
+				<div class="form-group col-md-6">
+					<label>SIREN</label>
+	                <input name="siren" class="form-control" ng-model="associateCompany.SIREN" ng-pattern="/^[0-9]{9}$/" required placeholder="ex: 123456789" should-be-siren>
+	                <div class="error-messages" ng-messages="companyForm.siren.$error" role="alert" multiple ng-show="!companyForm.siren.$pristine">
+	                  <div ng-message="required" class="alert alert-danger">Ce champ est obligatoire</div>
+	                  <div ng-message="pattern" class="alert alert-danger">Le code SIREN doit être composé de 9 chiffres</div>
+	                  <div ng-message="siren" class="alert alert-danger">Ce code SIREN n'est pas valide</div>
+	                </div>
+				</div><!-- /.form-group -->
+
+				<div class="form-group col-md-6">	
+					<label>Code APE</label>
+	                <input class="form-control" name="ape" ng-model="associateCompany.APE" placeholder="ex: 1234X" ng-pattern="/^[0-9]{4}[A-Z]$/">
+	                <div class="error-messages" ng-messages="companyForm.ape.$error" role="alert" multiple ng-show="!companyForm.ape.$pristine">
+	                  <div ng-message="pattern" class="alert alert-danger">Ce code APE n'est pas valide</div>
+	                </div>
+				</div>
+				<div class="form-group col-md-6">
+					<label>Enseigne</label>
+	                <input class="form-control" ng-model="associateCompany.ENSEIGNE">
+				</div><!-- /.form-group -->
+				<div class="form-group col-md-6">		
+					<label>Site Web</label>
+            		<input class="form-control" ng-model="companyProfile.WEBSITE">
+				</div>
+				<div class="form-group col-md-12">
+					<label>Description</label>
+	                <textarea class="form-control" name="desc" ng-model="companyProfile.DESCRIPTION" md-maxlength="500" rows="5" md-select-on-focus>
+	                </textarea>
+	                <div class="error-messages" ng-messages="companyForm.desc.$error" role="alert" multiple ng-show="!companyForm.desc.$pristine">
+	                  <div ng-message="md-maxlength" class="alert alert-danger">
+	                    La description est trop longue.
+	                  </div>
+	                </div>
+				</div>
+			</fieldset>			
+
+			<fieldset>
+				<legend>Localisation</legend>
+
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label>Pays</label>
+                			<input class="form-control" ng-model="associateCompany.COUNTRY">
+						</div><!-- /.form-group -->
+					</div><!-- /.col-* -->
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label>Ville</label>
+                			<input class="form-control" ng-model="associateCompany.VILLE">
+						</div><!-- /.form-group -->
+					</div><!-- /.col-* -->
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label>Code Postal</label>
+                			<input class="form-control" ng-model="associateCompany.CP">
+						</div><!-- /.form-group -->
+					</div><!-- /.col-* -->	
+
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label>Adresse</label>
+                			<input class="form-control" ng-model="associateCompany.ADRESSE">
+						</div><!-- /.form-group -->
+					</div><!-- /.col-* -->		
+				</div><!-- /.row -->
+			</fieldset>
+
+			<fieldset>
+				<legend>Contact</legend>
+
+				
+				<div class="form-group col-md-6">
+	                <label>Email</label>
+	                <input class="form-control" ng-model="companyProfile.EMAIL" type="email" >
+				</div>
+				<div class="form-group col-md-6">					
+	                <label>Téléphone</label>
+                	<input class="form-control" ng-model="companyProfile.PHONE">
+				</div>
+
+
+
+
+				<div class="form-group col-md-6">
+	                <label>Facebook</label>
+                	<input class="form-control" ng-model="companyProfile.SOCIAL.FACEBOOK">
+				</div>
+				<div class="form-group col-md-6">					
+	                <label>Twitter</label>
+                	<input class="form-control" ng-model="companyProfile.SOCIAL.TWITTER">
+				</div>
+				<div class="form-group col-md-4">
+	                <label>Google Plus</label>
+                	<input class="form-control" ng-model="companyProfile.SOCIAL.GPLUS">
+				</div>
+				<div class="form-group col-md-4">					
+	                <label>Snapchat</label>
+                	<input class="form-control" ng-model="companyProfile.SOCIAL.SNAPCHAT">
+				</div>
+				<div class="form-group col-md-4">					
+	                <label>Instagram</label>
+                	<input class="form-control" ng-model="companyProfile.SOCIAL.INSTA">
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<legend>Horaires</legend>
+				<div layout="row">
+                    <div class="form-group col-md-12 horaire" ng-repeat="day in days">			
+                        <label>{{day.day}}</label>
+                        <div class="horaire-container">
+	                        <input class="form-control form-inline" ng-model="day.model.am.o" ng-disabled="day.model.am.closed" placeholder="Ouverture"> - 
+	                        <input class="form-control form-inline" ng-model="day.model.am.c" ng-disabled="day.model.am.closed" placeholder="Fermeture">
+	                    </div>
+                   	</div>
+                </div> 
+			</fieldset>
+
+
+			<div class="center">
+				<a ng-click="saveCompanyData()" class="btn btn-primary btn-large">Créer</a>
+			</div><!-- /.center -->
+		</form>
+	</div><!-- /.box -->
+</div><!-- /.container -->
+	            </div><!-- /.content -->
+	        </div><!-- /.main-inner -->
+	    </div><!-- /.main -->
+    </div><!-- /.main-wrapper -->

@@ -1,0 +1,133 @@
+
+<div class="admin-content" id="top">
+	<div class="container-fluid">
+		<div class="admin-title">
+			<h1>Nouveau client</h1>
+
+			<ul class="breadcrumb">
+				<li><a ui-sref="app.home">FrenchRecruits</a> <i class="md-icon">keyboard_arrow_right</i></li>
+				
+					<li><a ui-sref="admin.dashboard">Dashboard</a> <i class="md-icon">keyboard_arrow_right</i></li>
+				
+
+				
+					<li class="active">Nouveau client</li>
+				
+			</ul><!-- /.breadcrumb -->	
+
+		</div><!-- /.admin-title -->
+
+			
+		<div class="admin-box">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="input-group edit-form"><label>Prénom</label>
+						<input type="text" class="form-control" placeholder="Prénom" ng-model="user.firstName">
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="input-group edit-form"><label>Nom</label>
+						<input type="text" class="form-control" placeholder="Nom" ng-model="user.lastName">
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="input-group edit-form"><label>Rôle</label>
+						<select class="form-control" ng-init="user.role = 'professionnel'" ng-model="user.role">
+							<option value="user">Utilisateur</option>
+							<option value="professionnel">Professionnel</option>
+							<option value="particulier">Particulier</option>
+							<option value="admin">Administrateur</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="input-group edit-form"><label>Email</label>
+						<input type="text" class="form-control" required placeholder="Email" ng-model="user.email">
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="input-group edit-form"><label>Téléphone</label>
+						<input type="text" class="form-control" placeholder="Téléphone" ng-model="user.phone">
+					</div>
+				</div>
+				
+			</div>
+		</div>
+			
+		<div class="admin-box">
+			<div class="row">
+				<div class="col-md-12" style="margin-bottom: 20px;" ng-show="linkedSociety">
+					<label>Société liée :</label>
+					{{linkedSociety.RAISON_SOC}} ({{linkedSociety.NOM}})
+					<a href="javascript:;" style="margin-left:20px" class="btn btn-primary" ng-click="unlink()"><i class="fa fa-chain-broken"></i> Délier</a>
+				</div>
+				<div class="col-md-12">
+					<label>Lier à une société</label>
+					<div class="admin-header-search">
+						<form method="get" action="?">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="md-icon">search</i>
+								</div><!-- /.input-group-addon -->
+
+								<input type="text" class="form-control" placeholder="Rechercher une société ..." ng-model="searchTerms" ng-change="searchCompany()">
+							</div><!-- /.form-group -->
+						</form>
+					</div><!-- /.admin-header-search -->
+				</div>
+			</div>
+			<table class="table small-header" ng-show="ctrl.companies">
+				<thead>
+					<tr>
+						<th class="min-width"></th>
+						<th class="min-width">Image</th>
+						<th>Raison Sociale</th>
+						<th>APE</th>
+						<th>Propriétaire</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					
+						<tr ng-repeat="company in ctrl.companies">
+							<td class="min-width"><div class="checkbox-wrapper" ng-class="{'checked': company.selected}"><input type="checkbox" ng-model="company.selected"></div></td>
+							<td class="min-width"><img src="assets/img/tmp/card-9.jpg" alt="Photo Services"></td>
+							<td>{{company.RAISON_SOC}}</td>
+							<td><a href="javascript:;">{{company.APE}}</a></td>
+							<td><a href="javascript:;">{{company.NOM}}</a></td>
+							<td>
+								<a href="javascript:;" class="btn btn-primary" ng-click="link(company)"><i class="md-icon">link</i> Lier</a>
+							</td>
+						</tr>
+					
+					
+				</tbody>
+			</table>
+		</div><!-- /.admin-box -->
+
+		<div class="admin-box">
+			<div class="row">
+				<div class="col-md-12">					
+					<input type="checkbox" ng-model="mail.send" style="margin-right: 10px"><label>Envoyer un mail</label>
+				</div>
+			</div>
+			<div class="row" ng-show="mail.send">
+				<div class="col-md-12">		
+					<label>Contenu</label>			
+					<text-angular ng-model="mail.content"></text-angular>
+				</div>
+			</div>
+		</div>
+
+		<a href="javascript:;" class="btn btn-success btn-block" ng-class="{'disabled': saving}" style="height:50px;line-height: 40px" ng-click="save()">
+			<span ng-show="!saving"><i class="md-icon">save</i>Sauvegarder</span>
+			<span ng-show="saving"><i class="fa fa-spinner fa-pulse fa-fw"></i>Sauvegarde....</span>
+		</a>
+
+	</div><!-- /.container-fluid -->
+</div><!-- /.admin-content -->	
+
+	

@@ -1,0 +1,23 @@
+<div class="container" style="padding:30px;">
+  <div class="row">
+    <div class="col-md-12" align="center">
+      <h2>Cette société est déjà attribuée</h2>
+    </div>
+  </div>
+
+  <div class="demo-dialog-content">
+    <p>
+      {{user.firstName}} {{user.lastName}} a déjà défini cette société comme étant la sienne. Vous pouvez le contacter par mail pour effectuer un échange.
+    </p>
+
+  </div>
+
+  <div align="center">
+    <a class="btn btn-primary" href="mailto:{{user.email}}">
+     <i class="fa fa-envelope "></i> Envoyer un mail
+    </a>
+    <button class="btn" ng-click="closeDialog()">
+      OK
+    </button>
+  </div>
+</div>

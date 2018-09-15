@@ -1,0 +1,80 @@
+
+<div class="main-wrapper"  id="mainContentCompany">
+	    <div class="main">
+	        <div class="main-inner">
+	            <div class="content">
+	                <div class="content-title">
+                        <div class="container">
+                            <h1>{{company.company.RAISON_SOC}}</h1>
+
+
+                            <ul class="breadcrumb">
+                                <li><a ui-sref="app.home">Latoo</a>
+                                    <i class="md-icon">keyboard_arrow_right</i></li>
+                                <li><a ui-sref="app.search">{{company.company.VILLE}}</a>
+                                    <i class="md-icon">keyboard_arrow_right</i></li>
+                                <li><a ui-sref="app.company({id: company.company._id})">{{company.company.RAISON_SOC}}</a>
+                                    <i class="md-icon">keyboard_arrow_right</i></li>
+                                <li class="active">{{offer.TITLE}}</li>
+                                
+                            </ul><!-- /.breadcrumb -->
+                        </div><!-- /.container -->
+                    </div><!-- /.content-title -->
+
+                    <div class="lt-wrapper" >
+
+                        <div class="listing-navigation">
+                            <a href="#"><i class="md-icon">keyboard_arrow_right</i></a>
+                            <a href="#"><i class="md-icon">print</i></a>
+                            <a href="#"><i class="md-icon">keyboard_arrow_left</i></a>	
+                        </div><!-- /.listing-navigation -->
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="push-top-bottom">
+                                        <div class="listing-detail">
+                                            <div class="gallery">
+                                                <div class="gallery-item" style="background-image: url({{images.cover}});">					    
+                                                    <h2 class="company-title pull-bottom">{{company.company.RAISON_SOC}}</h2>					    
+                                                    <button class="btn-print" ng-print print-element-id="mainContentCompany"><i class="fa fa-fw fa-print"></i>Imprimer</h2>			    
+                                                </div><!-- /.gallery-item -->            
+                                                <div class="gallery-profile-pic"><img ng-src="{{images.profile}}"></div>
+                                                <div class="gallery-infos">
+                                                    <h2 style="margin: 15px 0">{{offer.TITLE}}</h2>
+                                                </div>
+                                            </div><!-- /.gallery -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <ng-owl-carousel class="gallery owl-carousel owl-theme owl-loaded" owl-items="offer.PICS" owl-properties="properties">
+                                        <div class="gallery-item" ng-repeat="pic in offer.PICS" style="background-image: url('{{pic}}');"></div>                
+                                    </ng-owl-carousel>
+                                </div>
+
+
+                                <div class="col-md-5">
+                                    <div class="widget">
+                                        <div class="overview">
+                                            <h1>{{offer.TITLE}}</h1>     
+                                            <ul class="row">
+                                                <li class="col-md-6"><strong>Du</strong><span>{{offer.START_DATE | date:'dd/MM'}}</span></li>
+                                                <li class="col-md-6"><strong>Au</strong><span>{{offer.END_DATE | date:'dd/MM'}}</span></li>
+                                                <li class="col-md-6"><strong>Prix</strong><span ng-class="{'del':offer.REDUCTION}">{{offer.PRICE}}€</span></li>
+                                                <li class="col-md-6" ng-if=offer.REDUCTION><strong>Promotion</strong><span>{{offer.REDUCTION}}€</span></li>
+                                                <li class="col-md-12"><strong>Détails de l'offre</strong><span>{{offer.DESCRIPTION}}</span></li>                    
+                                            </ul>
+                                        </div><!-- /.overview -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.lt-wrapper-->
+	            </div><!-- /.content -->
+	        </div><!-- /.main-inner -->
+	    </div><!-- /.main -->
+    </div><!-- /.main-wrapper -->

@@ -1,0 +1,49 @@
+
+<div class="main-wrapper">
+	<div class="main">
+		<div class="main-inner">
+
+			<div class="content">
+				<div class="hero">
+					<div class="hero-form restore-password-container" ng-controller="ResetCtrl">
+						<div class="container">
+						
+							
+								<div class="no-bg">
+										<div class="admin-box">
+												<h2>Sécurité</h2>
+													<div class="row">
+														
+														<div class="col-md-6">
+															<div class="input-group edit-form" style="width: 100%"><label>Nouveau mot de passe</label>
+																<input type="password" class="form-control" required placeholder="Nouveau mot de passe" ng-model="pass.newPassword">
+															</div>
+														</div>
+														<div class="col-md-6">
+															<div class="input-group edit-form" style="width: 100%"><label>Confirmez le mot de passe</label>
+																<input type="password" class="form-control" placeholder="Confirmez le mot de passe" ng-model="pass.newPassword2">
+															</div>
+														</div>
+									
+													</div>
+											</div>
+									
+											<a href="javascript:;" class="btn btn-success btn-block" ng-class="{'disabled': saving}" style="height:50px;line-height: 40px" ng-click="save()">
+												<span ng-show="!saving"><i class="md-icon">save</i>Sauvegarder</span>
+												<span ng-show="saving"><i class="fa fa-spinner fa-pulse fa-fw"></i>Sauvegarde....</span>
+											</a>
+										</div><!-- /.admin-box -->
+							
+
+							</div>
+						</div><!-- /.container -->
+					</div><!-- /.hero-form -->	
+
+					
+				</div><!-- /.hero -->
+
+				
+			</div><!-- /.content -->
+		</div><!-- /.main-inner -->
+	</div><!-- /.main -->
+</div><!-- /.main-wrapper -->

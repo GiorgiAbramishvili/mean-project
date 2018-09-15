@@ -1,0 +1,85 @@
+
+<div class="header-wrapper" scroll-and-apply="sticky">
+	<div class="header">
+		<div class="header-inner">
+			<div class="header-top">
+				<div class="container">
+					<div class="nav-primary-wrapper collapse navbar-toggleable-sm">
+						<ul class="nav nav-pills ">
+							<li class="nav-item title-latoo">
+								<a ui-sref="app.home" class="nav-link" ui-sref-active="active">latoo</a>							
+							</li>
+							<li class="nav-item">
+								<a ui-sref="app.home" class="nav-link" ui-sref-active="active">Accueil</a>							
+							</li>
+
+							<li class="nav-item">
+								<a ui-sref="app.search" class="nav-link " ui-sref-active="active">Recherche</a>
+							</li>
+
+							<li class="nav-item">
+								<a  ng-click="ctrl.contactUs()"  href="javascript:;" class="nav-link " ui-sref-active="active">Contact</a>
+								
+							</li>
+
+							<li class="nav-item">
+								<a ui-sref="admin.dashboard" class="nav-link " ui-sref-active="active" ng-if="isAdmin">Admin</a>
+							</li>
+						</ul><!-- /.nav -->
+					</div><!-- /.nav-primary-wrapper -->
+
+					<ul class="nav nav-pills secondary" ng-if="isLoggedIn">
+						<li class="nav-item user-name">
+							<a ui-sref="app.profile.me" class="nav-link">{{currentUser.firstName}} {{currentUser.lastName}} <span style="color: #fb5a02">{{currentUser.role=="professionnel"?"PRO":currentUser.role=="admin"?"ADMIN":""}}</span></a>
+						</li>
+						<li class="nav-item user-avatar-wrapper">
+							<a href="#" class="nav-link circle user-avatar-image" style="background-image: url('assets/img/tmp/profile-1.jpg')"></a>
+							<span class="user-avatar-status"></span>
+
+							<ul class="header-more-menu">
+                                <li><a ui-sref="app.profile.me">Voir profil</a></li>
+                                <li><a ui-sref="app.profile.users">My Users</a></li>
+								<li><a ui-sref="app.profile.companies">Mes sociétés</a></li>
+								<li><a ui-sref="app.profile.subs">Abonnements</a></li>
+								<li><a ng-click="ctrl.logout()">Déconnexion</a></li>
+							</ul>							
+						</li>
+					</ul>
+					<button class="btn btn-warning pull-right" ng-if="!isLoggedIn" ng-click="ctrl.openLoginModal()" style="background-color:#fb5a02 ">Connexion</button>
+					<button class="navbar-toggler pull-xs-right hidden-md-up" type="button" data-toggle="collapse" data-target=".nav-primary-wrapper">
+                        <i class="md-icon">menu</i>
+                    </button>						
+				</div><!-- /.container -->
+			</div><!-- /.header-top -->
+
+			<!--
+				<div class="header-bottom">
+					<div class="container">
+						<div class="header-bottom-label hidden-md-down">
+							Je recherche
+						</div>
+
+						<ul class="nav nav-pills">
+							<li class="nav-item"><a href="listings.html" class="nav-link">Restaurants</a></li>
+							<li class="nav-item"><a href="listings.html" class="nav-link">Services</a></li>
+							<li class="nav-item"><a href="listings.html" class="nav-link">Hôtels</a></li>
+							<li class="nav-item"><a href="listings.html" class="nav-link">Voyages</a></li>
+							<li class="nav-item"><a href="listings.html" class="nav-link">Notaires</a></li>
+							<li class="nav-item"><a href="listings.html" class="nav-link">Transports</a></li>
+						</ul>
+
+						<div class="header-bottom-more">
+							<i class="md-icon">more_horiz</i>
+
+							<ul class="header-more-menu">
+								<li><a href="submit.html">Autres...</a></li>
+								<li><a href="login.html">Se connecter</a></li>
+								<li><a href="register.html">S'enregistrer</a></li>
+							</ul>
+						</div>
+					</div>
+				</div> -->
+				
+		</div><!-- /.header-inner -->
+	</div><!-- /.header -->
+</div><!-- /.header-wrapper -->

@@ -1,0 +1,153 @@
+
+
+		<div class="admin-content">
+			<div class="container-fluid">
+				<div class="admin-title">
+	<h1>Bienvenue sur la section administration de Latoo.fr</h1>
+
+	<ul class="breadcrumb">
+		<li><a href="index.html">Latoo</a> <i class="md-icon">keyboard_arrow_right</i></li>
+		
+			<li class="active">Dashboard</li>
+		
+
+		
+	</ul><!-- /.breadcrumb -->	
+</div><!-- /.admin-title -->
+
+<div class="admin-stats">
+	<div class="row">
+		<div class="col-xs-12 col-lg-6 col-xl-3">
+			<div class="admin-stat lime">
+				<div class="admin-stat-icon">
+					<i class="md-icon">people</i>
+				</div><!-- /.admin-stat-icon -->
+
+				<div class="admin-stat-content">
+					<h2>Utilisateurs inscrits</h2>
+					<h3>{{datas.stats.users}}</h3>
+				</div><!-- /.admin-stat-content -->
+			</div><!-- /.admin-stat -->
+		</div><!-- /.col-* -->
+
+		<div class="col-xs-12 col-lg-6 col-xl-3">
+			<div class="admin-stat blue">
+				<div class="admin-stat-icon">
+					<i class="md-icon">storage</i>
+				</div><!-- /.admin-stat-icon -->
+
+				<div class="admin-stat-content">
+					<h2>Sociétés référencées</h2>
+					<h3>{{datas.stats.companies}}</h3>
+				</div><!-- /.admin-stat-content -->
+			</div><!-- /.admin-stat -->
+		</div><!-- /.col-* -->
+
+		<div class="col-xs-12 col-lg-6 col-xl-3">
+			<div class="admin-stat purple">
+				<div class="admin-stat-icon">
+					<i class="md-icon">search</i>
+				</div><!-- /.admin-stat-icon -->
+
+				<div class="admin-stat-content">
+					<h2>Recherches</h2>
+					<h3>1234</h3>
+				</div><!-- /.admin-stat-content -->
+			</div><!-- /.admin-stat -->
+		</div><!-- /.col-* -->
+						
+		
+	</div><!-- /.row -->
+</div><!-- /.admin-stats -->
+
+<div class="admin-stats">
+	<div class="row">
+
+		<div class="col-xs-12">
+			<h4>Changer l'image d'accueil</h4>
+			<div class="admin-stat lime" style="overflow:hidden;max-height: 300px">
+			<form name="myForm">
+				  <input type="file" ngf-select ng-model="picFile" name="file"    
+			             accept="image/*|video/*" required
+			             ngf-model-invalid="errorFile">
+			      <br>
+			      <button ng-disabled="uploading" 
+			              ng-click="changebg(picFile)">Submit</button>
+			      <span class="progress" ng-show="picFile.progress >= 0">
+			        <div style="width:{{picFile.progress}}%" 
+			            ng-bind="picFile.progress + '%'"></div>
+			      </span>
+			      <span ng-show="picFile.result">Upload Successful</span>
+			      <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+			     </form>
+			</div><!-- /.admin-stat -->
+		</div><!-- /.col-* -->
+		
+	</div><!-- /.row -->
+</div><!-- /.admin-stats -->
+<div class="row">
+	<div class="col-lg-12 col-xl-6">
+
+		<div class="admin-box no-padding">
+			<table class="table">
+				<thead>
+					<tr>
+						<th colspan="3">Dernières sociétés référencées</th>		
+					</tr> 
+				</thead>
+
+				<tbody>
+					<tr ng-repeat="company in datas.last.companies">
+						<td><a ><img src="assets/img/tmp/card-1.jpg" alt=""> {{company.RAISON_SOC}}</a></td>
+						<td><a > {{company.NOM}}</a></td>
+						<td class="action"><a ui-sref="app.company({id: company._id})">Voir <i class="md-icon">keyboard_arrow_right</i></a></td>
+					</tr>
+
+				</tbody>
+
+				<tfoot>
+					<tr>
+						<td colspan="3" class="text-right">
+							<a ui-sref="admin.clients">Voir plus<i class="md-icon">keyboard_arrow_right</i></a>
+						</td>
+					</tr>	
+				</tfoot>
+			</table>
+		</div><!-- /.admin-box -->
+	</div><!-- /.col-* -->
+	<div class="col-lg-12 col-xl-6">
+
+		<div class="admin-box no-padding">
+			<table class="table">
+				<thead>
+					<tr>
+						<th colspan="3">Derniers utilisateurs inscrits</th>		
+					</tr> 
+				</thead>
+
+				<tbody>
+					<tr ng-repeat="user in datas.last.users">
+						<td><a href="#">
+							<span class="user-avatar">
+								<img src="assets/img/tmp/profile-1.jpg" alt="See H. Oceguera">
+							</span>
+						 	{{user.firstName}} {{user.lastName}}</a></td>
+						<td><a href="#"> {{user.email}}</a></td>
+					</tr>
+
+				</tbody>
+
+				<tfoot>
+					<tr>
+						<td colspan="3" class="text-right">
+							<a ui-sref="admin.users">Voir plus<i class="md-icon">keyboard_arrow_right</i></a>
+						</td>
+					</tr>	
+				</tfoot>
+			</table>
+		</div><!-- /.admin-box -->
+	</div><!-- /.col-* -->
+</div><!-- /.row -->
+
+			</div><!-- /.container-fluid -->
+		</div><!-- /.admin-content -->		

@@ -1,0 +1,123 @@
+<div class="header-blank larger" scroll-and-apply="sticky"></div>
+
+<div class="main-wrapper" id="mainContentCompany">
+    <div class="main">
+        <div class="main-inner">
+            <div class="editor-progress" scroll-and-apply="sticky">
+
+                <div class="container">
+                    <div class="row">
+                        <ul class="fast-nav" style="margin-left: 10%">
+                            <li class="save" ng-click="saveOffer()"><i class="fa fa-save"></i><span>Sauvegarder</span></li>
+                            <li ng-if="!creator" class="see" ui-sref="app.offer({id: offer._id})"><i class="fa fa-eye"></i><span>Voir</span></li>
+                            <li ng-if="creator" class="see" ui-sref="app.profile.companies"><i class="fa fa-times"></i><span>Annuler</span></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="row  error-field" ng-if="errors">
+                    <div class="col-md-12">
+                        {{errors}}
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="content">
+                <div class="modal fade uoloading-modal" tabindex="-1" role="dialog" aria-labelledby="uoloadingModal" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog modal-sm" ng-click="inc()">
+                        <div class="modal-content">
+                            <md-progress-circular md-mode="determinate" value="{{uploadStatus}}" style="float: left; margin: 15px"></md-progress-circular>
+                            <h3 style="margin: 30px 0 20px;">Chargement...</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="lt-wrapper">
+
+                    <div class="container">
+                        <div class="row edit-offer" id="part1">
+                            <div class="col-md-12">
+                                <div class="card">
+
+                                    <div class="card-content">
+                                        <h1>Lié à "{{company.company.RAISON_SOC}}" <small> (siren: {{company.company.SIREN}})</small></h1>
+                                        <div class="row">
+                                            <div class="col-md-12 lt-infos">
+                                                <h2 class="company-title">Titre</h2>
+                                                <div class="input-group edit-form col-sm-12">
+                                                    <input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Titre" ng-model="offer.TITLE"
+                                                        required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3 lt-infos">
+                                                <h2 class="company-title">Date de début</h2>
+                                                <div class="input-group edit-form col-sm-12">
+                                                    <md-datepicker ng-model="offer.START_DATE" md-placeholder="Début" md-open-on-focus></md-datepicker>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 lt-infos">
+                                                <h2 class="company-title">Date de fin</h2>
+                                                <div class="input-group edit-form col-sm-12">
+                                                    <md-datepicker ng-model="offer.END_DATE" md-placeholder="Fin" md-open-on-focus></md-datepicker>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 lt-infos">
+                                                <h2 class="company-title">Prix d'origine</h2>
+                                                <div class="input-group edit-form col-sm-12">
+                                                    <input type="number" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Prix" ng-model="offer.PRICE" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 lt-infos">
+                                                <h2 class="company-title">Prix promotionel</h2>
+                                                <div class="input-group edit-form col-sm-12">
+                                                    <input type="number" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Prix" ng-model="offer.REDUCTION" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 lt-infos">
+                                                <h2 class="company-title">Détails de l'offre</h2>
+                                                <div class="input-group edit-form col-sm-12">
+                                                    <textarea class="form-control ng-pristine ng-valid ng-empty ng-touched" row="5" placeholder="Détails de l'offre" ng-model="offer.DESCRIPTION"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 lt-infos">
+                                                <h2 class="company-title">Illustrations</h2>
+                                            </div>
+                                        </div>
+                                        <lf-ng-md-file-input
+                                            lf-files='files' accept="image/*" multiple preview drag
+                                            lf-api="fileInput"
+                                            lf-on-file-remove="onFileRemove"
+                                            lf-required lf-maxcount="5"
+                                            lf-filesize="5MB"
+                                            lf-browse-label="Parcourir"
+                                            lf-placeholder="Selectionnez des images"
+                                            lf-drag-and-drop-label="Glissez et déposez vos images"
+                                            lf-remove-label="Supprimer"
+                                            lf-caption="{{files.length}} {{files.length <= 1 ? 'fichier séléctioné' : 'fichiers séléctionés'}}"> </lf-ng-md-file-input>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.listing-detail -->
+                        </div>
+                        <!-- /.push-top-bottom -->
+                    </div>
+                    <!-- /.col-sm-9 -->
+
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-->
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- /.main-inner -->
+</div>
+<!-- /.main -->
+</div>
+<!-- /.main-wrapper -->

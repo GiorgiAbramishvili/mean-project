@@ -1,0 +1,138 @@
+<div class="admin-content" id="top">
+			<div class="container-fluid">
+				<div class="admin-title">
+					<h1>Gestion des abonnements</h1>
+
+					<!-- <ul class="breadcrumb">
+						<li><a ui-sref="app.home">Latoo</a> <i class="md-icon">keyboard_arrow_right</i></li>
+						
+							<li><a ui-sref="admin.dashboard">Dashboard</a> <i class="md-icon">keyboard_arrow_right</i></li>
+						
+
+						
+							<li class="active">Abonnements</li>
+						
+                    </ul> -->
+                    <!-- /.breadcrumb -->	
+
+				</div><!-- /.admin-title -->
+
+
+				<div class="row">
+					<div class="admin-box col-md-12">
+						<h2>Vos abonnements</h2>
+						<span ng-if="!currentSubs || currentSubs.length === 0">Vous n'avez aucune offre en cours.</span>
+						<table ng-if="subs" class="subs table small-header">
+								<thead>
+									<tr>
+										<th>Package</th>
+										<th>Date du dernier paiement</th>
+										<th>Email du comte associé</th>
+										<th>Prochain paiement</th>
+										<th>Fréquence</th>
+										<th>Montant</th>
+										<th>Statut</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								
+								<tbody>
+									
+										<tr ng-repeat="sub in subs | orderBy: 'lastPaid'">
+											<td>{{sub.package}}</td>
+											<td ng-show="sub.lastPaid">{{sub.lastPaid | amParse | amDateFormat:'DD/MM/YYYY HH:mm:ss'}}</td>
+											<td ng-show="!sub.lastPaid">-</td>
+											<td>{{sub.payer_email}}</td>
+											<td ng-show="sub.nextPayment">{{sub.nextPayment | amParse | amDateFormat:'DD/MM/YYYY HH:mm:ss'}}</td>
+											<td ng-show="!sub.nextPayment">-</td>
+											<td>{{sub.frequency}}</td>
+											<td>{{sub.price}}€</td>
+											<td>{{sub.status}}</td>
+											<td>
+											<A >
+												<a ng-show="sub.status === 'OK'" class="btn btn-secondary" ng-click="deleteCompany(company)" href="https://www.paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=W8QTXPWQXUE2W" target="paypal"><i class="md-icon">delete</i> Se désabonner</a></td>
+										</tr>
+									
+									
+								</tbody>
+							</table>
+
+					</div><!-- /.admin-box -->
+				</div>
+				<div class="row">
+					<div class="admin-box" ng-class="{'col-md-3': gold}">
+						<div class="sub-title">Offre Gold</div>
+						<div class="sub-action" ng-if="!gold">
+							<div class="offers">
+								<div class="row" data-toggle="buttons">
+									<div class="col-sm-12 col-md-4 col-lg-3" ng-repeat="offer in offers">
+										<div class="card card-primary" ng-class="{'selected': selectedOffer == offer}" ng-click="updateChoice(offer)"> <!--'offer_' + {{$index}} == selectedOffer-->
+											<div class="card-header">
+												<h3 class="card-title">{{offer.name}}</h3>
+												<h3 class="card-title" ng-if="offer.reduc" style="font-size: 0.9em">(Exclusivité: {{offer.reduc.code}})</h3>
+											</div>
+											<div class="panel-body">
+												<div class="the-price">
+													<span class="pricing-price" ng-if="offer.reduc">{{(offer.price - (offer.reduc ? offer.reduc.amount_off : 0)) | currency:'€ '}}<br></span>{{offer.reduc ? "Prix d'origine" : ''}} {{offer.price| currency:'€ '}}
+												</div>
+												<ul class="list-group list-group-flush">
+													<li class="list-group-item">{{offer.description}}</li>
+												</ul>
+											</div>
+											<div class="card-footer">
+												<label class="btn btn-primary">
+													<input type="radio" ng-checked="selectedOffer == offer" class="payRad"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span> Select</span>
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-group edit-form col-md-3 col-md-offset-9">
+										<input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Code reduction" ng-model="ctrl.couponCode">
+										<button class="pricing-btn btn-sm" ng-click="checkCoupon()">Activer un code</button><br>
+									</div>
+								</div>
+								
+							</div>
+							<div class="sub-title">Paiement</div>							
+							<div data-toggle="buttons">
+								<!-- <label class="btn" ng-click="payWith('paypal')">
+									<input type="radio" name='paymentProvider' value="paypal" class="payRad"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i>
+									<img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" alt="PayPal, le réflexe sécurité pour payer en ligne" style="float: right; height: 26px">
+								</label> -->
+								<label class="btn" ng-click="payWith('stripe')">
+									<input type="radio" name='paymentProvider' value="stripe" class="payRad" checked><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i>
+									<img src="./images/credit-card-logos.png" style="float: right; height: 26px;border-radius: 5px;">
+								</label>
+							</div>
+							<div class="row">
+								<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" id="paypal-form">
+									<input type="hidden" name="cmd" value="_s-xclick">
+									<input type="hidden" name="hosted_button_id" value="77K2Z7ASDWCM8">
+									<input type="hidden" name="on0" value="OFFRES">
+									<input type="hidden" name="os0" value="{{selectedOffer.type}}">
+									<input type="hidden" name="currency_code" value="EUR">
+									<input type="hidden" name="notify_url" value="https://api.latoo.fr/payments/ipn">
+									<div class="col-md-4" ng-if="paymentProvider=='paypal'">
+										<button type="submit" name="submit" class="pricing-btn" id="paypalPay">Payer avec Paypal ({{selectedOffer.price | currency:'€ '}})</button>
+									</div>
+									<input type="hidden" name="custom" ng-value="currentUser._id + ':gold'">
+								</form>
+								<div class="col-md-4" ng-if="paymentProvider=='stripe'">
+									<button id="stripPay" class="pricing-btn" ng-click="stripeCheckout()">Payer par carte ({{(selectedOffer.price - (selectedOffer.reduc ? selectedOffer.reduc.amount_off : 0)) | currency:'€ '}})</button>
+								</div>
+							</div>
+						</div>
+						<div class="sub-action" ng-if="gold">
+							Vous avez choisi cette offre.
+						    <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=W8QTXPWQXUE2W" target="paypal"><button type="submit"  class="btn btn-primary btn-block">Se désabonner</button></a>
+						</div>
+					</div><!-- /.admin-box -->
+				</div>
+
+				</nav>
+			</div><!-- /.container-fluid -->
+		</div><!-- /.admin-content -->	
+
+	

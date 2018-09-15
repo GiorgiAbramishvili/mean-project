@@ -1,0 +1,173 @@
+<div class="admin-content" id="top">
+    <div class="container-fluid">
+        <nav class="pagination-wrapper">
+            <ul class="pagination">
+                <li class="page-item disabled" ng-class="{disabled: ctrl.page <= 1}" ng-click="changePage(ctrl.page - 1)" smooth-scroll="#top">
+                    <a class="page-link" href="javascript:;" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+
+                <li class="page-item" ng-show="ctrl.page - 3 > 0">
+                    <a class="page-link" href="javascript:;">...</a>
+                </li>
+
+                <li class="page-item" ng-show="ctrl.page - 2 > 0" ng-click="changePage(ctrl.page - 2)" smooth-scroll="#top">
+                    <a class="page-link" href="javascript:;">{{ctrl.page - 2}}</a>
+                </li>
+                <li class="page-item" ng-show="ctrl.page - 1 > 0" ng-click="changePage(ctrl.page - 1)" smooth-scroll="#top">
+                    <a class="page-link" href="javascript:;">{{ctrl.page - 1}}</a>
+                </li>
+                <li class="page-item active">
+                    <a class="page-link" href="javascript:;">{{ctrl.page}}</a>
+                </li>
+                <li class="page-item" ng-show="ctrl.page + 1 <= ctrl.maxPages" ng-click="changePage(ctrl.page + 1)" smooth-scroll="#top">
+                    <a class="page-link" href="javascript:;">{{ctrl.page + 1}}</a>
+                </li>
+                <li class="page-item" ng-show="ctrl.page + 2 <= ctrl.maxPages" ng-click="changePage(ctrl.page + 2)" smooth-scroll="#top">
+                    <a class="page-link" href="javascript:;">{{ctrl.page + 2}}</a>
+                </li>
+
+                <li class="page-item" ng-show="ctrl.page + 3 <= ctrl.maxPages">
+                    <a class="page-link" href="javascript:;">...</a>
+                </li>
+
+                <li class="page-item" ng-class="{disabled: ctrl.page >= ctrl.maxPages}" ng-click="changePage(ctrl.page + 1)" smooth-scroll="#top">
+                    <a class="page-link" href="javascript:;" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav> 
+        <div class="admin-header-search" style="display: flex;">
+            <form method="get" action="?" style="display: flex;">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="md-icon">search</i>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Rechercher une société ..." ng-model="searchTerms" style="width: 300px;" >
+                </div>
+                <div>
+                    
+                    <div class="input-group pricing-select">
+                        <select class="form-control" 
+                                style="border-bottom: 1px solid #7d7d7d;" 
+                                id="propertySelect" 
+                                ng-model="searchProp" 
+                                value="RAISON_SOC"
+                                ng-options="col.title for col in colss"></select>
+                    </div>
+                </div>
+                
+            </form>
+            <button class="btn btn-sm btn-success" ng-click="searchComp()" style="height: 29px; margin-top: 18px; margin-left: 50px;">
+                <i class="md-icon">search</i>
+                Search
+            </button>
+            <button class="btn btn-sm btn-warrning" ng-click="clearSearch()" style="height: 29px; margin-top: 18px; margin-left: 10px;">
+                <i class="md-icon">clear</i>
+                Reset
+            </button>
+        </div>
+        <!-- /.admin-header-search -->
+        <div class="admin-box">
+            <div class="grid_filters2">
+
+                <!-- <button class="btn btn-sm stats_error" ng-click="filterTable('error')">
+                    With Error ({{global.companyImportStats.error}})
+                </button> -->
+                <button class="btn btn-sm stats_all" ng-click="filterTable('all')">
+                    All ({{ctrl.localized+ctrl['not_localized']}})
+                </button>
+                <button class="btn btn-sm stats_localized" ng-click="filterTable('localized')" >
+                    Localized ({{ctrl.localized}})
+                </button>
+                <button class="btn btn-sm stats_not_localized  btn-primary" ng-click="filterTable('not_localized')">
+                    Not Localized ({{ctrl['not_localized']}})
+                </button>
+                
+                <button class="btn btn-sm btn-success" ng-click="refresh()" >
+                    <i class="md-icon" style="margin: 0px;">refresh</i>
+                </button>
+                
+                <button class="btn btn-sm btn-success" ng-click="saveTable2()" style="float: right; margin-left: 10px;">
+                    <i class="md-icon">save</i>
+                    Localize
+                </button>
+
+                <button class="btn btn-sm btn-warrning" ng-click="deleteRows()" style="float: right;">
+                    <i class="md-icon">delete</i>
+                    Delete
+                </button>
+
+
+            </div>
+            <br>
+            <div style="overflow: hidden;">
+                <hot-table settings="ctrl.settings" 
+                    datarows="ctrl.companies"
+                    columns="ctrl.columns"
+                    >
+
+                    <!-- <hot-column data="SIRET" title="'SIRET'"></hot-column>
+                    <hot-column data="SIREN" title="'SIREN'"></hot-column>
+                    <hot-column data="RAISON_SOC" title="'RAISON_SOC'"></hot-column>
+                    <hot-column data="NOM" title="'NOM'"></hot-column>
+                    <hot-column data="ENSEIGNE" title="'ENSEIGNE'"></hot-column>
+                    <hot-column data="ADRESSE" title="'ADRESSE'"></hot-column>
+                    <hot-column data="CP" title="'CP'"></hot-column>
+                    <hot-column data="VILLE" title="'VILLE'"></hot-column>
+                    <hot-column data="APE" title="'APE'"></hot-column>
+                    <hot-column data="NAF" title="'NAF'"></hot-column> -->
+                    <!-- ID_CLIENT	SIRET	SIREN	RAISON_SOC	NOM	DATE_CREA	ENSEIGNE	ADRESSE	CP	VILLE	APE	NAF -->
+
+                </hot-table>
+            </div>
+        </div>
+        <!-- <nav class="pagination-wrapper">
+            <ul class="pagination">
+                <li class="page-item disabled" ng-class="{disabled: ctrl.page <= 1}" ng-click="changePage(ctrl.page - 1)" smooth-scroll="#top">
+                    <a class="page-link" href="javascript:;" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+
+                <li class="page-item" ng-show="ctrl.page - 3 > 0">
+                    <a class="page-link" href="javascript:;">...</a>
+                </li>
+
+                <li class="page-item" ng-show="ctrl.page - 2 > 0" ng-click="changePage(ctrl.page - 2)" smooth-scroll="#top">
+                    <a class="page-link" href="javascript:;">{{ctrl.page - 2}}</a>
+                </li>
+                <li class="page-item" ng-show="ctrl.page - 1 > 0" ng-click="changePage(ctrl.page - 1)" smooth-scroll="#top">
+                    <a class="page-link" href="javascript:;">{{ctrl.page - 1}}</a>
+                </li>
+                <li class="page-item active">
+                    <a class="page-link" href="javascript:;">{{ctrl.page}}</a>
+                </li>
+                <li class="page-item" ng-show="ctrl.page + 1 <= ctrl.maxPages" ng-click="changePage(ctrl.page + 1)" smooth-scroll="#top">
+                    <a class="page-link" href="javascript:;">{{ctrl.page + 1}}</a>
+                </li>
+                <li class="page-item" ng-show="ctrl.page + 2 <= ctrl.maxPages" ng-click="changePage(ctrl.page + 2)" smooth-scroll="#top">
+                    <a class="page-link" href="javascript:;">{{ctrl.page + 2}}</a>
+                </li>
+
+                <li class="page-item" ng-show="ctrl.page + 3 <= ctrl.maxPages">
+                    <a class="page-link" href="javascript:;">...</a>
+                </li>
+
+                <li class="page-item" ng-class="{disabled: ctrl.page >= ctrl.maxPages}" ng-click="changePage(ctrl.page + 1)" smooth-scroll="#top">
+                    <a class="page-link" href="javascript:;" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav> -->
+        <!-- /.admin-box -->
+    </div>
+</div>
+<!-- /.admin-content -->

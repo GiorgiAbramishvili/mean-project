@@ -1,0 +1,50 @@
+
+
+<div class="admin-wrapper" style="min-height: 100vh">
+	<div class="admin-sidebar">
+		<a href="/" class="hidden-md-down">
+			<img src="assets/img/logo.png" alt="" class="admin-sidebar-logo">
+		</a>
+
+		<div class="dashboard-nav-primary collapse navbar-toggleable-md">
+			<ul class="nav nav-pills nav-stacked">
+				<li class="nav-item">
+					<a ui-sref="app.profile.companies" class="nav-link " ui-sref-active="active"><i class="md-icon">view_list</i> Mes sociétés </a>
+				</li>
+
+
+				<li class="nav-item">
+					<a ui-sref="app.profile.me" class="nav-link " ui-sref-active="active"><i class="md-icon">person</i> Mon profil </a>
+                </li>
+                
+                <li class="nav-item">
+					<a ui-sref="app.profile.users" class="nav-link " ui-sref-active="active"><i class="md-icon">people</i> My Users </a>
+				</li>
+
+				<li class="nav-item">
+					<a ui-sref="app.profile.subs" class="nav-link " ui-sref-active="active"><i class="md-icon">settings</i> Mes abonnements</a>
+				</li>
+
+				<li class="nav-item">
+					<a ui-sref="app.home" class="nav-link" ui-sref-active="active"><i class="md-icon">exit_to_app</i> Retour au site</a>
+				</li>
+			</ul>
+		</div>
+
+		<hr class="hidden-md-down">
+
+		<div class="hidden-md-down">
+			<!--<h2>Recent Activity</h2>
+
+			<ul class="recent">
+				<li><img src="assets/img/tmp/profile-1.jpg" alt=""> <a href="#">Adam Smith</a> has added new listing into <a href="#">properties</a> category.</li>
+				<li><img src="assets/img/tmp/profile-2.jpg" alt=""> <a href="#">Kim Makin</a> is asking for the agent role with review provilege.</li>
+				<li><img src="assets/img/tmp/profile-3.jpg" alt=""> <a href="#">Kilee Baker</a> has created new account</a> category.</li>						
+			</ul>-->
+		</div>
+	</div><!-- /.admin-sidebar -->
+
+	<div class="admin-main">		
+		<div ui-view></div>
+	</div>
+</div><!-- /.admin-wrapper -->

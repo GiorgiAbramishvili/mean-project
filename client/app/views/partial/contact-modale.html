@@ -1,0 +1,38 @@
+<div class="modal-body">
+    <div class="ec-modallogin-form ec-login-popup" >
+        <span class="ec-color">Contact US</span>
+        <form>
+            <ul>
+                <li>
+                    <input type="text" name="email" ng-model="ctrl.name" placeholder="Name" required /> </li>
+                <li>
+                    <li>
+                        <input type="text" 
+                        name="email"
+                         ng-model="ctrl.email" 
+                         placeholder="Email" required /> </li>
+
+                    <li>
+                        <textarea 
+                        class="form-control" 
+                        placeholder="Description" 
+                        ng-model="ctrl.description" 
+                        required
+                        name="description"
+                        style="
+                        border-width: 2px;
+                        border-style: inset;
+                        border-color: initial;
+                        border-image: initial;
+                        padding: 14px;
+                        height: 130px;">
+
+                    </textarea>
+                    </li>
+                    <li>
+                        <input type="submit" value="Send" ng-click="ctrl.sendContactUs()"> 
+                    </li>
+            </ul>
+        </form>
+    </div>
+</div>

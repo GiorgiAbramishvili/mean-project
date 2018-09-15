@@ -1,0 +1,78 @@
+<div class="main-wrapper">
+    <div class="main">
+        <div class="main-inner">
+
+            <div class="content">
+                <div class="hero" style="min-height: 700px;">
+                    <div class="hero-form restore-password-container" >
+                        <div class="container">
+                            <div class="modal-body">
+
+                                <div class="ec-modallogin-form ec-register-popup">
+                                    <span class="ec-color">Créez votre compte en quelques clics</span>
+                                    <form>
+                                        <ul>
+                                            <li ng-repeat="err in ctrl.errors">
+                                                <div class="alert alert-danger">
+                                                    <strong>
+                                                        <i class="fa fa-fw fa-exclamation"></i>
+                                                    </strong> {{err}}
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <input type="text" ng-model="su.firstName" placeholder="Prénom"> </li>
+                                            <li>
+                                                <input type="text" ng-model="su.lastName" placeholder="Nom"> </li>
+                                            <li>
+                                                <input type="text" ng-model="su.email" placeholder="Votre email"> </li>
+                                            <li>
+                                                <input type="password" ng-model="su.password" placeholder="Mot de passe"> </li>
+                                            <li>
+                                                <input type="password" ng-model="su.password2" placeholder="Confirmez le mot de passe"> </li>
+                                            <li>
+                                                <div class="col-md-6">
+                                                    <input class="col-md-12 btn-success" type="submit" ng-click="ctrl.signup(false, true)" value="Je suis particulier">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input class="col-md-12 btn-warning" type="submit" ng-click="ctrl.signup(true)" value="Je suis professionnel">
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                    <span class="ec-color">Ou inscrivez vous avec vos réseaux sociaux:</span>
+                                    <ul class="ec-login-social-media">
+                                        <li>
+                                            <a href="{{ctrl.apiUri}}/auth/facebook">
+                                                <i class="fa fa-facebook"></i> Facebook</a>
+                                        </li>
+                                        <li class="ec-twitter-color">
+                                            <a href="{{ctrl.apiUri}}/auth/twitter">
+                                                <i class="fa fa-twitter"></i> twitter</a>
+                                        </li>
+                                        <li class="ec-googleplus-color">
+                                            <a href="{{ctrl.apiUri}}/auth/google">
+                                                <i class="fa fa-google-plus-square"></i> Google+</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- /.container -->
+                    </div>
+                    <!-- /.hero-form -->
+
+
+                </div>
+                <!-- /.hero -->
+
+
+            </div>
+            <!-- /.content -->
+        </div>
+        <!-- /.main-inner -->
+    </div>
+    <!-- /.main -->
+</div>
+<!-- /.main-wrapper -->

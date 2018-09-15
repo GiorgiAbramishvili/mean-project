@@ -1,0 +1,70 @@
+
+
+<div class="admin-wrapper" style="min-height: 100vh">
+	<div class="admin-sidebar">
+		<a href="/" class="hidden-md-down">
+			<img src="assets/img/logo.png" alt="" class="admin-sidebar-logo">
+		</a>
+
+		<a href="javascript:;" class="btn btn-primary btn-block hidden-md-down" ui-sref="admin.newUsers">Ajouter client</a>
+		<a href="javascript:;" class="btn btn-primary btn-block hidden-md-down" ng-click="addCompany()">Ajouter société</a>
+		<div class="uploading-msg" ng-if="global.uploading || global.processed">
+			<span ng-if="global.uploading"><i class="fa fa-spinner fa-spin fa-2x fa-fw" ></i>
+			<span class="sr-only" ng-if="global.uploading">Loading...</span></span>
+			<i class="fa fa-check fa-2x fa-fw" ng-if="!global.uploading && global.processed"></i>
+			<span class="sr-only" ng-if="!global.uploading && global.processed">Terminé...</span>
+            {{global.processed}}/{{global.toBeUploaded}} sociétés ajoutées 
+            <div ng-if="!global.uploading">
+                <a href="javascript:;" class="btn btn-primary btn-block hidden-md-down" ng-click="global.reviewCompany()">review</a>
+            </div>
+		</div>
+		<div class="dashboard-nav-primary collapse navbar-toggleable-md">
+			<ul class="nav nav-pills nav-stacked">
+				<li class="nav-item">
+					<a ui-sref="admin.dashboard" class="nav-link" ui-sref-active="active"><i class="md-icon">dashboard</i> Dashboard</a>
+				</li>
+
+				<li class="nav-item">
+					<a ui-sref="admin.clients" class="nav-link " ui-sref-active="active"><i class="md-icon">view_list</i> Sociétés </a>
+                </li>
+                
+                <li class="nav-item">
+					<a ui-sref="admin.clients2" class="nav-link " ui-sref-active="active"><i class="md-icon">view_list</i> Sociétés 2</a>
+				</li>
+
+
+				<li class="nav-item">
+					<a ui-sref="admin.users" class="nav-link " ui-sref-active="active"><i class="md-icon">people</i> Utilisateurs </a>
+				</li>
+				
+				<li class="nav-item">
+					<a ui-sref="admin.pricing" class="nav-link " ui-sref-active="active"><i class="md-icon">attach_money</i> Offres & Coupons </a>
+				</li>
+
+				<li class="nav-item">
+					<a ui-sref="admin.mail" class="nav-link " ui-sref-active="active"><i class="md-icon">email</i> Mailing</a>
+				</li>
+
+				<li class="nav-item">
+					<a ui-sref="app.home" class="nav-link" ui-sref-active="active"><i class="md-icon">exit_to_app</i> Retour au site</a>
+				</li>
+			</ul>
+		</div>
+
+		<hr class="hidden-md-down">
+
+		<div class="hidden-md-down">
+			<!--<h2>Recent Activity</h2>
+
+			<ul class="recent">
+				<li><img src="assets/img/tmp/profile-1.jpg" alt=""> <a href="#">Adam Smith</a> has added new listing into <a href="#">properties</a> category.</li>
+				<li><img src="assets/img/tmp/profile-2.jpg" alt=""> <a href="#">Kim Makin</a> is asking for the agent role with review provilege.</li>
+				<li><img src="assets/img/tmp/profile-3.jpg" alt=""> <a href="#">Kilee Baker</a> has created new account</a> category.</li>						
+			</ul>-->
+		</div>
+	</div><!-- /.admin-sidebar -->
+
+	<div class="admin-main">		
+		<div ui-view></div>
+	</div>
+</div><!-- /.admin-wrapper -->

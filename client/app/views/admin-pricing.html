@@ -1,0 +1,129 @@
+<div class="admin-content">
+			<div class="container-fluid">
+				<div class="admin-title">
+	<h1>Gestion des offres et coupons</h1>
+
+	<ul class="breadcrumb">
+	    <li><a ui-sref="app.home">Latoo</a> <i class="md-icon">keyboard_arrow_right</i></li>
+		<li><a ui-sref="admin.dashboard">Dashboard</a> <i class="md-icon">keyboard_arrow_right</i></li>
+		<li class="active">offres & coupons</li>
+	</ul><!-- /.breadcrumb -->	
+</div><!-- /.admin-title -->
+
+<div class="admin-box offer-pricing">
+	<h2>Offres</h2>
+	<div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Editer l'offre :</label>
+				<div class="input-group pricing-select">
+					<select class="form-control" id="offerSelect" ng-model="selectedOffer" ng-options="offer.type for offer in offers"></select>
+				</div>
+				<br>
+				<label>Créer une offre :</label>				
+				<button ng-click="createOffer()" class="btn btn-primary"><i class="md-icon">add</i> Créer</button>
+			</div>
+			<div class="col-md-10" style="border-left: 1px solid grey">
+				<form name="pricingOfferForm">
+					<div class="col-md-6">
+						<label>Titre de l'offre</label>
+						<div class="input-group edit-form col-sm-12">
+							<input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Titre" ng-model="selectedOffer.name" required>
+						</div>
+						<br>
+						<label for="desc">Description</label>
+						<div class="input-group edit-form col-sm-12">
+							<textarea class="form-control ng-pristine ng-valid ng-empty ng-touched" row="5" placeholder="Détails de l'offre" ng-model="selectedOffer.description" required></textarea>
+						</div>
+					</div>
+					<div class="col-md-3 lt-infos">
+						<label>Date de début</label>
+						<div class="input-group edit-form col-sm-12">
+							<md-datepicker ng-model="selectedOffer.from" md-placeholder="Début" md-open-on-focus required></md-datepicker>
+						</div>
+					</div>
+					<div class="col-md-3 lt-infos">
+						<label>Date de fin</label>
+						<div class="input-group edit-form col-sm-12">
+							<md-datepicker ng-model="selectedOffer.to" md-placeholder="Fin" md-open-on-focus required></md-datepicker>
+						</div>
+					</div>
+					<div class="col-md-3 lt-infos">
+						<label>Prix</label>
+						<div class="input-group edit-form col-sm-12">
+							<input type="price" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Prix en €" ng-model="selectedOffer.price" required>
+						</div>
+					</div>
+					<div class="col-md-3 lt-infos">
+						<label>Type</label>
+						<div class="input-group edit-form col-sm-12">
+							<input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Type" ng-model="selectedOffer.type" required>
+						</div>
+					</div>
+					<div class="offer-save">
+						<button ng-click="deleteOffer()" class="btn btn-secondary btn-lg"><i class="md-icon">delete</i> Supprimer</button>					
+						<button type="submit" ng-click="saveOffer()" class="btn btn-primary btn-lg"><i class="md-icon">save</i> Enregistrer</button>					
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div><!-- /.admin-box -->
+
+<div class="admin-box offer-pricing">
+	<h2>Coupons</h2>
+	<div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Editer le coupon:</label>
+				<div class="input-group pricing-select">
+					<select class="form-control" id="offerSelect" ng-model="selectedCoupon" ng-options="coupon.code for coupon in coupons"></select>
+				</div>
+				<br>
+				<label>Créer une offre :</label>
+				<button ng-click="createCoupon()" class="btn btn-primary"><i class="md-icon">add</i> Créer</button>
+			</div>
+			<div class="col-md-10" style="border-left: 1px solid grey">
+				<form name="couponForm">
+					<div class="col-md-4">
+						<label>Coupon lié à l'offre</label>
+						<div class="input-group pricing-select">
+							<select class="form-control" id="offerSelect" ng-model="selectedCoupon.type" ng-options="offer.type as offer.type for offer in offers"></select>
+						</div>
+					</div>
+					<br>
+					<div class="col-md-4 lt-infos">
+						<label>Date de début</label>
+						<div class="input-group edit-form col-sm-12">
+							<md-datepicker ng-model="selectedCoupon.from" md-placeholder="Début" md-open-on-focus required></md-datepicker>
+						</div>
+					</div>
+					<div class="col-md-4 lt-infos">
+						<label>Date de fin</label>
+						<div class="input-group edit-form col-sm-12">
+							<md-datepicker ng-model="selectedCoupon.to" md-placeholder="Fin" md-open-on-focus required></md-datepicker>
+						</div>
+					</div>
+					<div class="col-md-3 lt-infos">
+						<label>Reduction de:</label>
+						<div class="input-group edit-form col-sm-12">
+							<input type="price" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Prix en €" ng-model="selectedCoupon.amount_off" required>
+						</div>
+					</div>
+					<div class="col-md-3 lt-infos">
+						<label>Code</label>
+						<div class="input-group edit-form col-sm-12">
+							<input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="Code de reduction" ng-model="selectedCoupon.code" required>
+						</div>
+					</div>
+					<div class="offer-save">
+						<button ng-click="deleteCoupon()" class="btn btn-secondary btn-lg"><i class="md-icon">delete</i> Supprimer</button>					
+						<button type="submit" ng-click="saveCoupon()" class="btn btn-primary btn-lg"><i class="md-icon">save</i> Enregistrer</button>					
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div><!-- /.admin-box -->
+			</div><!-- /.container-fluid -->
+		</div><!-- /.admin-content -->		

@@ -1,0 +1,127 @@
+<div class="admin-content" id="top">
+    <div class="container-fluid">
+        <!-- /.admin-title -->
+
+        <div class="admin-box">
+
+            <div class="row">
+                <div class="col-xs-12 col-lg-6 col-xl-3">
+                        <div class="admin-stat purple">
+                            <div class="admin-stat-icon">
+                                <i class="md-icon">markunread</i>
+                            </div>
+                    
+                            <div class="admin-stat-content">
+                                <h2>Pending</h2>
+                                <h3>{{invitesData.pendingInvites}}</h3>
+                            </div>
+                    
+                        </div>
+                    
+                    </div>
+
+                    <div class="col-xs-12 col-lg-6 col-xl-3">
+                            <div class="admin-stat blue">
+                                <div class="admin-stat-icon">
+                                    <i class="md-icon">people</i>
+                                </div>
+                                <!-- /.admin-stat-icon -->
+                                <div class="admin-stat-content">
+                                    <h2>Active</h2>
+                                    <h3 class="ng-binding">{{invitesData.acceptedInvites}}</h3>
+                                </div>
+                                <!-- /.admin-stat-content -->
+                            </div>
+                            <!-- /.admin-stat -->
+                        </div>
+                
+                
+                
+                <a href="javascript:;" 
+                    class="btn btn-success email-invite" 
+                    ng-click="openInvite()">
+                        <i class="md-icon">contact_mail</i>
+                </a>
+
+                
+ 
+                    <div 
+                        class="socialinviter" 
+                        type="contactimporter"
+                        appearance="circle"
+                        layout="small"
+                        exclude="aol,csv,mailchimp,box,mailru,yammer,eventbrite,email"
+                    ></div>
+                 
+            </div>
+
+            
+
+        </div>
+
+        <div class="admin-header-search">
+            <form method="get" action="?">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="md-icon">search</i>
+                    </div>
+                    <!-- /.input-group-addon -->
+
+                    <input type="text" class="form-control" placeholder="Rechercher..." ng-model="searchTerms" ng-change="filterInvites()">
+                </div>
+                <!-- /.form-group -->
+            </form>
+        </div>
+        <!-- /.admin-header-search -->
+        <div class="admin-box no-padding">
+            <table class="table small-header">
+                <thead>
+                    <tr>
+                        <th class="min-width"></th>
+                        <th>Email</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr ng-repeat="invite in invitesData.allInvites">
+                        <td class="min-width">
+                            <div class="checkbox-wrapper" ng-class="{'checked': company.selected}">
+                                <input type="checkbox" ng-model="company.selected">
+                            </div>
+                        </td>
+                        <td>{{invite.email}}</td>
+                        <td>
+                            <a href="javascript:;">{{invite.status}}</a>
+                        </td>
+                        <td>
+
+                            <a href="javascript:;" 
+                                class="btn btn-secondary" 
+                                ng-show="invite.status=='pending'"
+                                ng-click="deleteInvite(invite.email)">
+                                <i class="md-icon">delete</i> Supprimer</a> 
+
+                            <a href="javascript:;" 
+                                class="btn btn-success" 
+                                ng-show="invite.status=='pending'" 
+                                ng-click="resendInvite(invite.email)">
+                                <i class="md-icon">refresh</i> Resend</a>
+                            
+<!--                                 
+                            <a href="javascript:;" class="btn btn-primary" ui-sref="app.edit({id:company._id})">
+                                <i class="md-icon">mode_edit</i> Modifier</a>-->
+                        </td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+        <!-- /.admin-box -->
+
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.admin-content -->

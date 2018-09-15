@@ -1,0 +1,43 @@
+{
+  "name": "latoo",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "^1.4.0",
+    "angular-animate": "^1.4.0",
+    "angular-cookies": "^1.4.0",
+    "angular-resource": "^1.4.0",
+    "angular-route": "^1.4.0",
+    "angular-sanitize": "^1.4.0",
+    "angular-touch": "^1.4.0",
+    "angular-ui-router": "ui-router#^0.3.1",
+    "ngmap": "^1.17.8",
+    "angular-bootstrap": "^2.2.0",
+    "angular-messages": "^1.5.8",
+    "angular-toastr": "^2.1.1",
+    "material-design-icons": "^3.0.1",
+    "angular-moment": "^1.0.0",
+    "ngprogress": "^1.1.3",
+    "angular-progress-arc": "^1.0.0",
+    "ng-img-crop": "ngImgCrop#^0.3.2",
+    "ng-flow": "~2",
+    "ng-file-upload": "^12.2.13",
+    "ng-img-crop-full-extended": "ngImgCropFullExtended#^0.6.2",
+    "ng-tags-input": "^3.1.1",
+    "textAngular": "^1.5.16",
+    "angular-ui-carousel": "^0.1.10",
+    "angular-material": "^1.1.4",
+    "lf-ng-md-file-input": "^1.5.2",
+    "angular-owl-carousel2": "*",
+    "ngHandsontable": "^0.13.0",
+    "handsontable": "https://github.com/handsontable/handsontable-pro.git#^1.18.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.4.0"
+  },
+  "appPath": "app",
+  "moduleName": "latooApp",
+  "resolutions": {
+    "angular": "1.6.9",
+    "handsontable": "^1.18.0"
+  }
+}

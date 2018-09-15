@@ -1,0 +1,53 @@
+<div class="box">
+
+    <uib-tabset active="active" justified="true">
+        <uib-tab index="0" heading="One By One">
+            <div class="box">
+                <form name="companyForm">
+
+                    <legend>Enter User email's in fields bellow
+                        <a href="javascript:;" 
+                            class="btn btn-success add-box" 
+                            ng-click="ctrl.addBox()">
+                            <i class="md-icon">add</i>
+                        </a>
+                    </legend>
+                    {{fields}}
+                    <div class="form-group col-md-12" ng-repeat="field in ctrl.fields.singleEmails">
+                        <input type="email" class="form-control" ng-model="field.value" placeholder="sample@email.com" />
+                    </div>
+
+                    <!-- /.form-group -->
+
+
+                    <div class="center">
+                        <a ng-click="ctrl.submitInvites()" class="btn btn-primary btn-large">Invite</a>
+                    </div>
+                    <!-- /.center -->
+                </form>
+            </div>
+            <!-- /.box -->
+
+
+        </uib-tab>
+
+        <uib-tab index="1" heading="Multiple">
+            <div class="box">
+                <legend>Enter multiple email's</legend>
+
+                <div class="input-group edit-form" style="width: 100%">
+                    <textarea placeholder="user1@gmail.com
+user2@gmail.com
+user3@gmail.com
+..." style="width: 100%; min-height: 400px;" ng-model="ctrl.fields.groupEmails"></textarea>
+                </div>
+                <div class="center">
+                    <a ng-click="ctrl.submitInvites(1)" class="btn btn-primary btn-large">Invite</a>
+                </div>
+
+            </div>
+        </uib-tab>
+
+    </uib-tabset>
+
+</div>
